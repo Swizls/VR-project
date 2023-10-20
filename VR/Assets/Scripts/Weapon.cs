@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
         _inputData = GetComponent<InputData>();
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        grabbable.activated.AddListener(Fire);
+        grabbable.activated.AddListener(Shot);
 
         if(_hasMagazineOnStart)
         {
@@ -63,15 +63,15 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Fire(ActivateEventArgs arg0)
+    private void Shot(ActivateEventArgs arg0)
     {
         if(_loadedMagazine != null)
         {
             Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
 
-            if(hit.collider.TryGetComponent(out RagdollHandler ragdoll))
+            if(hit.collider.TryGetComponent(out HitReaction hitable))
             {
-                ragdoll.ToggleRagdoll();
+                hitable.HitReaction();
             }
 
             _audioSource.clip = _weaponShotSound;
