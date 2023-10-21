@@ -20,14 +20,12 @@ public class Weapon : MonoBehaviour
     private AudioSource _audioSource;
 
     private GameObject _loadedMagazine;
-    private InputData _inputData;
 
     public GameObject LoadedMagzine => _loadedMagazine;
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _inputData = GetComponent<InputData>();
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(Shot);
@@ -56,7 +54,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        _inputData.RightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isPressed);
+        InputData.RightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isPressed);
         if (isPressed)
         {
             Eject();

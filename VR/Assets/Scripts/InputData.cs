@@ -3,22 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class InputData : MonoBehaviour
+public static class InputData
 {
-    private InputDevice _rightController;
-    private InputDevice _leftController;
-    private InputDevice _HMD;
+    private static InputDevice _rightController;
+    private static InputDevice _leftController;
+    private static InputDevice _HMD;
 
-    public InputDevice LeftController => _leftController;
-    public InputDevice RightController => _rightController;
-    public InputDevice HMD => _HMD;
-
-    void Update()
+    public static InputDevice LeftController
     {
-        if (!_rightController.isValid || !_leftController.isValid || !_HMD.isValid)
+        get
+        {
             InitializeInputDevices();
+            return _leftController;
+        }
     }
-    private void InitializeInputDevices()
+    public static InputDevice RightController
+    {
+        get
+        {
+            InitializeInputDevices();
+            return _rightController;
+        }
+    }
+    public static InputDevice HMD
+    {
+        get 
+        {
+            InitializeInputDevices();
+            return _HMD;
+        } 
+    }
+
+    private static void InitializeInputDevices()
     {
         
         if(!_rightController.isValid)
@@ -30,7 +46,7 @@ public class InputData : MonoBehaviour
 
     }
 
-    private void InitializeInputDevice(InputDeviceCharacteristics inputCharacteristics, ref InputDevice inputDevice)
+    private static void InitializeInputDevice(InputDeviceCharacteristics inputCharacteristics, ref InputDevice inputDevice)
     {
         List<InputDevice> devices = new List<InputDevice>();
         //Call InputDevices to see if it can find any devices with the characteristics we're looking for
