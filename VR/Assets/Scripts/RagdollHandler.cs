@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,24 +17,27 @@ public class RagdollHandler : MonoBehaviour, HitReaction
         _mainCollider = GetComponent<Collider>();
         _agent = GetComponent<NavMeshAgent>();
 
-        ToggleRagdoll();
+        ActivateRagdoll();
     }
 
     public void HitReaction()
     {
-        ToggleRagdoll();
-        _agent.enabled = !_agent.enabled;
+        if (!_mainCollider.enabled)
+            return;
+
+        _agent.enabled = false;
+        ActivateRagdoll();
     }
 
-    public void ToggleRagdoll()
+    public void ActivateRagdoll()
     {
         foreach(Collider bone in _boneRoot.GetComponentsInChildren<Collider>())
         {
-            bone.enabled = !bone.enabled;
+            bone.enabled = true;
         }
         foreach(Rigidbody bone in _boneRoot.GetComponentsInChildren<Rigidbody>())
         {
-            bone.isKinematic = !bone.isKinematic;
+            bone.isKinematic = true;
         }
     }
 }

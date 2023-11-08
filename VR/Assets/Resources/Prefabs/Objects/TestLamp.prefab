@@ -79,12 +79,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5427821170678624476}
   - component: {fileID: 3704895021722384709}
   - component: {fileID: 4870416633608013985}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestLamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

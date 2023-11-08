@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        grabbable.activated.AddListener(Shot);
+        grabbable.activated.AddListener(Shoot);
 
         if(_hasMagazineOnStart)
         {
@@ -48,8 +48,7 @@ public class Weapon : MonoBehaviour
 
         _hasMagazineOnStart = magazine;
 
-        _audioSource.clip = _emptyWeaponSound;
-        _audioSource.Play();
+        SetAudioClipAndPlay(_emptyWeaponSound);
     }
 
     private void Update()
@@ -61,7 +60,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Shot(ActivateEventArgs arg0)
+    private void Shoot(ActivateEventArgs arg0)
     {
         if(_loadedMagazine != null)
         {
@@ -72,8 +71,7 @@ public class Weapon : MonoBehaviour
                 hitable.HitReaction();
             }
 
-            _audioSource.clip = _weaponShotSound;
-            _audioSource.Play();
+            SetAudioClipAndPlay(_weaponShotSound);
         }
     }
 
@@ -84,13 +82,18 @@ public class Weapon : MonoBehaviour
 
         _loadedMagazine = null;
 
-        _audioSource.clip = _emptyWeaponSound;
-        _audioSource.Play();
+        SetAudioClipAndPlay(_emptyWeaponSound);
     }
 
     public void Reload()
     {
         if(_loadedMagazine == null) 
             LoadMagazine();
+    }
+
+    private void SetAudioClipAndPlay(AudioClip clip)
+    {
+        _audioSource.clip = clip; 
+        _audioSource.Play();
     }
 }
