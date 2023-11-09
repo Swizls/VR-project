@@ -14,9 +14,10 @@ public class TestNavMeshMover : MonoBehaviour
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        if( _agent != null )
-        {
-            _agent.SetDestination(_startWaypoint.transform.position);
-        }
+
+        if (_agent == null || _startWaypoint == null)
+            return;
+
+        _agent.SetDestination(_startWaypoint.transform.position);
     }
 }

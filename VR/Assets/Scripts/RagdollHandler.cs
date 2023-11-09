@@ -10,34 +10,29 @@ public class RagdollHandler : MonoBehaviour, HitReaction
     [SerializeField] private GameObject _boneRoot;
 
     private Collider _mainCollider;
+    private Rigidbody _mainRigidbody;
     private NavMeshAgent _agent;
 
     private void Start()
     {
         _mainCollider = GetComponent<Collider>();
+        _mainRigidbody = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
-
-        ActivateRagdoll();
     }
 
     public void HitReaction()
     {
         if (!_mainCollider.enabled)
             return;
-
-        _agent.enabled = false;
         ActivateRagdoll();
     }
 
     public void ActivateRagdoll()
     {
-        foreach(Collider bone in _boneRoot.GetComponentsInChildren<Collider>())
-        {
-            bone.enabled = true;
-        }
-        foreach(Rigidbody bone in _boneRoot.GetComponentsInChildren<Rigidbody>())
-        {
-            bone.isKinematic = true;
-        }
+        _mainCollider.enabled = false;
+        _mainRigidbody.isKinematic = true;
+        _agent.enabled = false;
+
+        _boneRoot.SetActive(true);
     }
 }
