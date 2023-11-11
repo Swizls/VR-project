@@ -3,37 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(FieldOfView))]
-public class EnemyBehaviourHandler : MonoBehaviour
+namespace EnemyAI
 {
-    private NavMeshAgent _agent;
-    private FieldOfView _fieldOfView;
-
-    private void Start()
+    [RequireComponent(typeof(FieldOfView))]
+    public class EnemyBehaviourHandler : MonoBehaviour
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _fieldOfView = GetComponent<FieldOfView>();
+        [SerializeField] private GameObject _warningIcon;
 
-        _fieldOfView.PlayerHasBeenSpotted += FollowPlayer;
-        _fieldOfView.PlayerHasBeenLost += Patrol;
-    }
+        private NavMeshAgent _agent;
+        private FieldOfView _fieldOfView;
 
-    private void OnDisable()
-    {
-        if (_fieldOfView == null)
-            return;
+        private void Start()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            _fieldOfView = GetComponent<FieldOfView>();
 
-        _fieldOfView.PlayerHasBeenSpotted -= FollowPlayer;
-        _fieldOfView.PlayerHasBeenLost -= Patrol;
-    }
+            _fieldOfView.PlayerHasBeenSpotted += FollowPlayer;
+            _fieldOfView.PlayerHasBeenLost += Patrol;
+        }
 
-    private void FollowPlayer(Vector3 playerPosition)
-    { 
-        _agent.SetDestination(playerPosition);
-    }
-    private void Patrol(Vector3 playerPosition)
-    {
-        Waypoint waypoint = FindObjectOfType<Waypoint>();
-        _agent.SetDestination(waypoint.transform.position);
+        private void OnDisable()
+        {
+            if (_fieldOfView == null)
+                return;
+
+            _fieldOfView.PlayerHasBeenSpotted -= FollowPlayer;
+            _fieldOfView.PlayerHasBeenLost -= Patrol;
+
+            _warningIcon.SetActive(false);
+        }
+
+        private void FollowPlayer(Vector3 playerPosition)
+        {
+            _warningIcon.SetActive(true);
+            _agent.SetDestination(playerPosition);
+        }
+
+        private void Patrol()
+        {
+            _warningIcon.SetActive(false);
+            Waypoint waypoint = FindObjectOfType<Waypoint>();
+            _agent.SetDestination(waypoint.transform.position);
+        }
     }
 }

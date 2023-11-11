@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(RagdollHandler))]
-public class ToggleRaddoll : Editor
+public class RagdollHandlerEditor : Editor
 {
     public override void OnInspectorGUI()
     {

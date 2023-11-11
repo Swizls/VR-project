@@ -4,20 +4,29 @@ using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.AI;
+using EnemyAI;
 
 public class RagdollHandler : MonoBehaviour, HitReaction
 {
     [SerializeField] private GameObject _boneRoot;
 
-    private Collider _mainCollider;
+    //Physics
     private Rigidbody _mainRigidbody;
+    private Collider _mainCollider;
+
+    //AI
     private NavMeshAgent _agent;
+    private FieldOfView _fieldOfView;
+    private EnemyBehaviourHandler _enemyBehaviourHandler;
 
     private void Start()
     {
         _mainCollider = GetComponent<Collider>();
         _mainRigidbody = GetComponent<Rigidbody>();
+
         _agent = GetComponent<NavMeshAgent>();
+        _fieldOfView = GetComponent<FieldOfView>();
+        _enemyBehaviourHandler = GetComponent<EnemyBehaviourHandler>();
     }
 
     public void HitReaction()
@@ -29,9 +38,12 @@ public class RagdollHandler : MonoBehaviour, HitReaction
 
     public void ActivateRagdoll()
     {
-        _mainCollider.enabled = false;
         _mainRigidbody.isKinematic = true;
+
+        _mainCollider.enabled = false;
         _agent.enabled = false;
+        _fieldOfView.enabled = false;
+        _enemyBehaviourHandler.enabled = false;
 
         _boneRoot.SetActive(true);
     }
