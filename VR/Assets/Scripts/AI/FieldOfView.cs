@@ -13,7 +13,8 @@ namespace EnemyAI
         [SerializeField] private LayerMask _targetMask;
         [SerializeField] private LayerMask _obstructionMask;
 
-        [SerializeField] private bool _isPlayerSpotted;
+        private bool _isPlayerSpotted;
+        private bool _isPlayerSpottedBefore;
 
         public Action<Vector3> PlayerHasBeenSpotted;
         public Action PlayerHasBeenLost;
@@ -22,10 +23,7 @@ namespace EnemyAI
         public float Angle => _angle;
         public bool IsPlayerSpotted => _isPlayerSpotted;
 
-        private void Start()
-        {
-            StartCoroutine(FOVRoutine());
-        }
+        private void Start() => StartCoroutine(FOVRoutine());
 
         private IEnumerator FOVRoutine()
         {
@@ -36,7 +34,12 @@ namespace EnemyAI
 
                 if (_isPlayerSpotted)
                 {
+                    _isPlayerSpottedBefore = true;
                     PlayerHasBeenSpotted?.Invoke(playerPosition);
+                }
+                else if(_isPlayerSpottedBefore)
+                {
+                    PlayerHasBeenLost?.Invoke();
                 }
             }
         }
@@ -53,7 +56,7 @@ namespace EnemyAI
                 if (Vector3.Angle(transform.forward, directionToTarget) < _angle / 2)
                 {
                     float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-                    return !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask); ;
+                    return !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask);
                 }
             }
             targetPosition = Vector3.zero;
@@ -61,4 +64,3 @@ namespace EnemyAI
         }
     }
 }
-

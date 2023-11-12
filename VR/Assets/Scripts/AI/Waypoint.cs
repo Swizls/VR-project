@@ -2,23 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Waypoint : MonoBehaviour
-{
-    [SerializeField] private GameObject _nextWaypoint;
-
-    public GameObject NextWaypoint => _nextWaypoint;
-
-    private void OnTriggerEnter(Collider other)
+namespace EnemyAI 
+{ 
+    public class Waypoint : MonoBehaviour
     {
-        if(other.TryGetComponent(out TestNavMeshMover agent))
+        public enum WaypointType 
+        { 
+            Patrol,
+            Search
+        }
+
+        [SerializeField] private WaypointType _waypointType;
+        [SerializeField] private GameObject _nextWaypoint;
+
+        public GameObject NextWaypoint => _nextWaypoint;
+        public WaypointType Waypointtype => _waypointType;
+
+        private void OnTriggerEnter(Collider other)
         {
-            agent.Agent.SetDestination(_nextWaypoint.transform.position);
+            if(other.TryGetComponent(out TestNavMeshMover agent))
+            {
+                agent.Agent.SetDestination(_nextWaypoint.transform.position);
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if(_waypointType == WaypointType.Patrol)
+                Gizmos.color = Color.yellow;
+            else if(_waypointType == WaypointType.Search)
+                Gizmos.color= Color.red;
+
+            Gizmos.DrawSphere(transform.position, 0.1f);
+
+            if(_nextWaypoint != null)
+                Gizmos.DrawLine(transform.position, _nextWaypoint.transform.position);
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, _nextWaypoint.transform.position);
-    }
 }
+

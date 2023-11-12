@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Knife : Weapon
+public class Knife : MonoBehaviour
 {
     private void Attack(HitReaction hitable)
     {
