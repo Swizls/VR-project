@@ -3055,6 +3055,7 @@ GameObject:
   - component: {fileID: 6495616137184919169}
   - component: {fileID: 7178785880340163439}
   - component: {fileID: 6780143062882157252}
+  - component: {fileID: 2601087826411158888}
   m_Layer: 0
   m_Name: Holster
   m_TagString: Untagged
@@ -3070,8 +3071,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4408759300863713362}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9914446, z: -0, w: 0.13052888}
-  m_LocalPosition: {x: -0.25000072, y: -0.76, z: -0.05000037}
+  m_LocalRotation: {x: -0, y: -0.9914445, z: -0, w: 0.13052888}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3111,6 +3112,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holdingItem: {fileID: 0}
+--- !u!114 &2601087826411158888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408759300863713362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a63a3ede5f03b46b87d4eb9f972cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraOffset: {x: -0.25, y: -0.5, z: 0}
+  _cameraReference: {fileID: 1128778436288520222}
+  _angle: 0
+  _radius: 1
+  _debug: 1
 --- !u!1 &5561931619877276995
 GameObject:
   m_ObjectHideFlags: 0

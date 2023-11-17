@@ -26,12 +26,18 @@ namespace EnemyAI
             _fieldOfView = GetComponent<FieldOfView>();
 
             _startPosition = transform.position;
+
+            _fieldOfView.PlayerHasBeenSpotted += OnPlayerAppearence;
+            _fieldOfView.PlayerHasBeenLost += OnPlayerContactLost;
         }
 
         private void OnEnable()
         {
-            _fieldOfView.PlayerHasBeenSpotted += OnPlayerAppearence;
-            _fieldOfView.PlayerHasBeenLost += OnPlayerContactLost;
+            if(_fieldOfView != null)
+            {
+                _fieldOfView.PlayerHasBeenSpotted += OnPlayerAppearence;
+                _fieldOfView.PlayerHasBeenLost += OnPlayerContactLost;
+            }
         }
 
         private void OnDisable()
