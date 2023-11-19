@@ -20,9 +20,11 @@ namespace EnemyAI
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.TryGetComponent(out TestNavMeshMover agent))
+            if(other.TryGetComponent(out EnemyMover enemyMover))
             {
-                agent.Agent.SetDestination(_nextWaypoint.transform.position);
+                enemyMover.Agent.isStopped = true;
+                enemyMover.Agent.SetDestination(_nextWaypoint.transform.position);
+                enemyMover.Agent.isStopped = false;
             }
         }
 

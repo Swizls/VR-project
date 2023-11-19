@@ -230,7 +230,7 @@ MonoBehaviour:
   _enemiesMask:
     serializedVersion: 2
     m_Bits: 8
-  _destroySound: {fileID: 8300000, guid: 404f5ae9b74e4bd4795e944cbdc91c4e, type: 3}
+  _noiseSound: {fileID: 8300000, guid: 404f5ae9b74e4bd4795e944cbdc91c4e, type: 3}
   _noiseRadius: 20
   _canBeDestroyedOnLand: 1
 --- !u!82 &1443081789515177464

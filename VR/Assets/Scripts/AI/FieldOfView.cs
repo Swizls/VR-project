@@ -14,43 +14,37 @@ namespace EnemyAI
         [SerializeField] private LayerMask _obstructionMask;
 
         private bool _isPlayerSpotted;
-        private bool _isPlayerSpottedBefore;
+        private bool _isEnemyChasingPlayer = false;
 
-        public Action<Vector3> PlayerHasBeenSpotted;
+        public Action PlayerHasBeenSpotted;
         public Action PlayerHasBeenLost;
 
         public float Radius => _radius;
         public float Angle => _angle;
-        public bool IsPlayerSpotted => _isPlayerSpotted;
 
-        private void Start() => StartCoroutine(FOVRoutine());
-
-        private IEnumerator FOVRoutine()
+        private void FixedUpdate()
         {
-            while (true)
-            {
-                yield return new WaitForFixedUpdate();
-                _isPlayerSpotted = FieldOfViewCheck(out Vector3 playerPosition);
+            _isPlayerSpotted = FieldOfViewCheck();
 
-                if (_isPlayerSpotted)
-                {
-                    _isPlayerSpottedBefore = true;
-                    PlayerHasBeenSpotted?.Invoke(playerPosition);
-                }
-                else if(_isPlayerSpottedBefore)
-                {
-                    PlayerHasBeenLost?.Invoke();
-                }
+            if (_isPlayerSpotted && !_isEnemyChasingPlayer)
+            {
+                _isEnemyChasingPlayer = true;
+                PlayerHasBeenSpotted?.Invoke();
+            }
+            else if(!_isPlayerSpotted && _isEnemyChasingPlayer)
+            {
+                _isEnemyChasingPlayer = false;
+                PlayerHasBeenLost?.Invoke();
             }
         }
 
-        private bool FieldOfViewCheck(out Vector3 targetPosition)
+        private bool FieldOfViewCheck()
         {
             Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);
 
             if (rangeChecks.Length != 0)
             {
-                targetPosition = rangeChecks[0].transform.position;
+                Vector3 targetPosition = rangeChecks[0].transform.position;
                 Vector3 directionToTarget = (targetPosition - transform.position).normalized;
 
                 if (Vector3.Angle(transform.forward, directionToTarget) < _angle / 2)
@@ -59,7 +53,6 @@ namespace EnemyAI
                     return !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask);
                 }
             }
-            targetPosition = Vector3.zero;
             return false;
         }
     }

@@ -4358,7 +4358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7465294887362724044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86d52be389cdc048959c3e7dc4304a7, type: 3}
+  m_Script: {fileID: 11500000, guid: c85dacefd95d3dc40ad7983058016879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startWaypoint: {fileID: 0}
@@ -4382,7 +4382,6 @@ MonoBehaviour:
   _obstructionMask:
     serializedVersion: 2
     m_Bits: 65
-  _isPlayerSpotted: 0
 --- !u!114 &2747702713971794232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4395,6 +4394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e2a43ece906094396f6af9dc5898a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startBehaviuor: 0
+  _playerTransform: {fileID: 0}
   _warningIcon: {fileID: 7270000367728635076}
 --- !u!1 &7481455579830302725
 GameObject:

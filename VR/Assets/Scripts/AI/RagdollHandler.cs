@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.AI;
 using EnemyAI;
@@ -44,6 +40,8 @@ public class RagdollHandler : MonoBehaviour, HitReaction
         _agent.enabled = false;
         _fieldOfView.enabled = false;
         _enemyBehaviourHandler.enabled = false;
+
+        _enemyBehaviourHandler.WarningIcon.SetActive(false);
 
         _boneRoot.SetActive(true);
     }

@@ -3071,7 +3071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4408759300863713362}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9914445, z: -0, w: 0.13052888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3126,9 +3126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraOffset: {x: -0.25, y: -0.5, z: 0}
   _cameraReference: {fileID: 1128778436288520222}
-  _angle: 0
-  _radius: 1
-  _debug: 1
+  _debug: 0
 --- !u!1 &5561931619877276995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,7 +3145,7 @@ GameObject:
   - component: {fileID: 7392447714096118712}
   m_Layer: 10
   m_Name: XR Origin (XR Rig)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
