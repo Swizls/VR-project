@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8024503176144579744}
+  - component: {fileID: 1427341564983844906}
   m_Layer: 6
   m_Name: TestDoor
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   - {fileID: 366441802541945486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1427341564983844906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4181987907308440973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e2f8c194c1ba648ad06c739eba8270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doorObject: {fileID: 8093510576947896927}
+  _rotationSpeed: 5
+  _isLocked: 0
 --- !u!1 &6888564098138442321
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +690,7 @@ Transform:
   m_GameObject: {fileID: 8093510576947896927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1, z: 0}
+  m_LocalPosition: {x: -0.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 0.100000046}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -792,7 +808,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 90, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 11, y: 2, z: -5.5}
+  m_ConnectedAnchor: {x: 10.95, y: 2, z: -4}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:

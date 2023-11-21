@@ -13,7 +13,7 @@ public class MagazineReloadHanlder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Magazine>(out Magazine magazine) && _weapon.LoadedMagzine == null)
+        if (other.gameObject.TryGetComponent(out Magazine magazine) && !_weapon.IsMagazineLoaded)
         {
             Destroy(other.gameObject);
             _weapon.Reload();

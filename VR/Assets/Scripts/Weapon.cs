@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private GameObject _magazinePrefab;
 
+    [Space]
+    [Header("Audio clips")]
     [SerializeField] private AudioClip _weaponShotSound;
     [SerializeField] private AudioClip _weaponReloadSound;
     [SerializeField] private AudioClip _emptyWeaponSound;
@@ -21,7 +23,9 @@ public class Weapon : MonoBehaviour
 
     private GameObject _loadedMagazine;
 
-    public GameObject LoadedMagzine => _loadedMagazine;
+    private bool _isMagazineLoaded;
+
+    public bool IsMagazineLoaded => _isMagazineLoaded;
 
     void Start()
     {
@@ -38,15 +42,20 @@ public class Weapon : MonoBehaviour
 
     private void LoadMagazine()
     {
-        GameObject magazine = Instantiate(_magazinePrefab, _magazineSpot.transform);
+        if (_magazineSpot != null)
+        { 
+            GameObject magazine = Instantiate(_magazinePrefab, _magazineSpot.transform);
 
-        _loadedMagazine = magazine;
+            _loadedMagazine = magazine;
 
-        Destroy(magazine.GetComponent<XRGrabInteractable>());
-        Destroy(magazine.GetComponent<Rigidbody>());
-        Destroy(magazine.GetComponent<Magazine>());
+            Destroy(magazine.GetComponent<XRGrabInteractable>());
+            Destroy(magazine.GetComponent<Rigidbody>());
+            Destroy(magazine.GetComponent<Magazine>());
+        
+            _hasMagazineOnStart = magazine;
+        }
 
-        _hasMagazineOnStart = magazine;
+        _isMagazineLoaded = true;
 
         SetAudioClipAndPlay(_emptyWeaponSound);
     }
@@ -62,32 +71,49 @@ public class Weapon : MonoBehaviour
 
     private void Shoot(ActivateEventArgs arg0)
     {
-        if(_loadedMagazine != null)
-        {
-            Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
+        if (!_isMagazineLoaded)
+            return;
 
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
+
+        if(hit.collider != null) 
+        { 
             if(hit.collider.TryGetComponent(out HitReaction hitable))
             {
                 hitable.HitReaction();
             }
-
-            SetAudioClipAndPlay(_weaponShotSound);
         }
+
+        SetAudioClipAndPlay(_weaponShotSound);
     }
 
     private void Eject() 
     {
-        _loadedMagazine.AddComponent<Rigidbody>();
-        _loadedMagazine.transform.SetParent(null);
+        if (!_isMagazineLoaded)
+            return;
 
-        _loadedMagazine = null;
+        if(_loadedMagazine != null) 
+        { 
+            _loadedMagazine.AddComponent<Rigidbody>();
+            _loadedMagazine.transform.SetParent(null);
+
+            _loadedMagazine = null;        
+        }
+        else
+        {
+            GameObject magazine = Instantiate(_magazinePrefab, transform.position, transform.rotation);
+
+            //Destroy(magazine.GetComponent<Magazine>());
+        }
+
+        _isMagazineLoaded = false;
 
         SetAudioClipAndPlay(_emptyWeaponSound);
     }
 
     public void Reload()
     {
-        if(_loadedMagazine == null) 
+        if(!_isMagazineLoaded) 
             LoadMagazine();
     }
 

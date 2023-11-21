@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemHolster : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable _holdingItem;
+
     private IEnumerator HoldItem()
     {
         while (!_holdingItem.isSelected)
