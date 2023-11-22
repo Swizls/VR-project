@@ -10,6 +10,9 @@ public class RagdollHandler : MonoBehaviour, HitReaction
     private Rigidbody _mainRigidbody;
     private Collider _mainCollider;
 
+    //Components
+    private Animator _animator;
+
     //AI
     private NavMeshAgent _agent;
     private FieldOfView _fieldOfView;
@@ -19,6 +22,8 @@ public class RagdollHandler : MonoBehaviour, HitReaction
     {
         _mainCollider = GetComponent<Collider>();
         _mainRigidbody = GetComponent<Rigidbody>();
+
+        _animator = GetComponentInChildren<Animator>();
 
         _agent = GetComponent<NavMeshAgent>();
         _fieldOfView = GetComponent<FieldOfView>();
@@ -35,8 +40,10 @@ public class RagdollHandler : MonoBehaviour, HitReaction
     public void ActivateRagdoll()
     {
         _mainRigidbody.isKinematic = true;
-
         _mainCollider.enabled = false;
+
+        _animator.enabled = false;
+
         _agent.enabled = false;
         _fieldOfView.enabled = false;
         _enemyBehaviourHandler.enabled = false;
