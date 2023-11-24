@@ -9,11 +9,15 @@ public class ChunkConnector : MonoBehaviour
 
     public bool IsConnected => _isConnected;
 
-    public Room ConnectNewRoom(Room newRoom)
+    public Room ConnectNewRoom(GameObject newRoom)
     {
-        Instantiate(newRoom.gameObject);
-        newRoom.StartConnector.position = transform.position;
+        GameObject room = Instantiate(newRoom);
+
+        Room roomComponent = room.GetComponent<Room>();
+
+        roomComponent.StartConnector.position = transform.position;
+        roomComponent.StartConnector.rotation = transform.rotation;
         _isConnected = true;
-        return newRoom;
+        return roomComponent;
     }
 }

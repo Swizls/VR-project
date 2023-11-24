@@ -25,58 +25,13 @@ Transform:
   m_GameObject: {fileID: 128570812331214223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: -5}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5750800408205908058}
-  - {fileID: 2654367446319998149}
   m_Father: {fileID: 8599741751550015634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &306219787918478471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2654367446319998149}
-  - component: {fileID: 2040909400247711065}
-  m_Layer: 0
-  m_Name: Connector
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2654367446319998149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306219787918478471}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2387218000784420301}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2040909400247711065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306219787918478471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb93a8ae816e7c42b0a8d18bee4b4ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5769658988960322545
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,50 +150,75 @@ MonoBehaviour:
     m_ManualUV: 0
     elementGroup: -1
     m_TextureGroup: -1
+  - m_Indexes: 120000001300000011000000120000001100000010000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 0}
+    m_SubmeshIndex: 1
+    m_ManualUV: 0
+    elementGroup: -1
+    m_TextureGroup: -1
   m_SharedVertices:
-  - m_Vertices: 0000000009000000
-  - m_Vertices: 040000000b000000
-  - m_Vertices: 010000000c000000
-  - m_Vertices: 060000000e000000
-  - m_Vertices: 020000000d000000
-  - m_Vertices: 050000000f000000
-  - m_Vertices: 0300000008000000
-  - m_Vertices: 070000000a000000
+  - m_Vertices: 000000000d000000
+  - m_Vertices: 040000000f000000
+  - m_Vertices: 0100000010000000
+  - m_Vertices: 0600000012000000
+  - m_Vertices: 020000000800000011000000
+  - m_Vertices: 050000000a00000013000000
+  - m_Vertices: 03000000090000000c000000
+  - m_Vertices: 070000000b0000000e000000
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 0, z: -5.5}
-  - {x: 0, y: 0, z: -5.5}
+  - {x: 3, y: 0, z: -1.5}
+  - {x: 0, y: 0, z: -1.5}
   - {x: 0, y: 3, z: 0}
-  - {x: 3, y: 3, z: -5.5}
+  - {x: 3, y: 3, z: -1.5}
   - {x: 3, y: 3, z: 0}
-  - {x: 0, y: 3, z: -5.5}
-  - {x: 0, y: 0, z: -5.5}
+  - {x: 0, y: 3, z: -1.5}
+  - {x: 3, y: 0, z: -1.5}
+  - {x: 0, y: 0, z: -1.5}
+  - {x: 3, y: 3, z: -1.5}
+  - {x: 0, y: 3, z: -1.5}
+  - {x: 0, y: 0, z: -1.5}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 3, z: -5.5}
+  - {x: 0, y: 3, z: -1.5}
   - {x: 0, y: 3, z: 0}
   - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 0, z: -5.5}
+  - {x: 3, y: 0, z: -1.5}
   - {x: 3, y: 3, z: 0}
-  - {x: 3, y: 3, z: -5.5}
+  - {x: 3, y: 3, z: -1.5}
   m_Textures0:
   - {x: 0, y: 0}
   - {x: 3, y: 0}
-  - {x: 3, y: -5.5}
-  - {x: 0, y: -5.5}
+  - {x: 3, y: -1.5}
+  - {x: 0, y: -1.5}
   - {x: 0, y: 0}
-  - {x: -3, y: -5.5}
+  - {x: -3, y: -1.5}
   - {x: -3, y: 0}
-  - {x: 0, y: -5.5}
-  - {x: -5.5, y: 0}
+  - {x: 0, y: -1.5}
+  - {x: -3, y: 0}
   - {x: 0, y: 0}
-  - {x: -5.5, y: 3}
+  - {x: -3, y: 3}
+  - {x: 0, y: 3}
+  - {x: -1.5, y: 0}
+  - {x: 0, y: 0}
+  - {x: -1.5, y: 3}
   - {x: 0, y: 3}
   - {x: 0, y: 0}
-  - {x: 5.5, y: 0}
+  - {x: 1.5, y: 0}
   - {x: 0, y: 3}
-  - {x: 5.5, y: 3}
+  - {x: 1.5, y: 3}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -246,6 +226,10 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
@@ -267,7 +251,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 74
+  m_VersionIndex: 725
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -287,8 +271,8 @@ MonoBehaviour:
   m_Points:
   - {x: 0, y: 0, z: 0}
   - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 0, z: -5.5}
-  - {x: 0, y: 0, z: -5.5}
+  - {x: 3, y: 0, z: -1.5}
+  - {x: 0, y: 0, z: -1.5}
   m_Extrude: 3
   m_EditMode: 0
   m_FlipNormals: 1
@@ -377,7 +361,7 @@ GameObject:
   - component: {fileID: 8599741751550015634}
   - component: {fileID: 861077727345969386}
   m_Layer: 0
-  m_Name: Hallway
+  m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cbf97f9de5df945b4a4acdad3f1a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomType: 1
+  _roomType: 2
   _startConnector: {fileID: 2387218000784420301}
-  _chunkConnectors:
-  - {fileID: 2040909400247711065}
+  _chunkConnectors: []

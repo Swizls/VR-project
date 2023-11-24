@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestLevel.unity
     guid: c97f3b59abc894e4b96b5cbaf362e797
+  - enabled: 1
+    path: Assets/Scenes/TestProcedureScene.unity
+    guid: 43e39c335718ee749908f4c9fd01a7db
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
