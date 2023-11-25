@@ -14,65 +14,94 @@ public class LevelGenerator : MonoBehaviour
 
     private List<Room> _createdRooms = new List<Room>();
 
-    private List<ChunkConnector> _availableConnectors = new List<ChunkConnector>();
-    
-    public List<ChunkConnector> AvailableConnectors => _availableConnectors;
+    public List<Room> CreatedRooms => _createdRooms;
 
     private void OnValidate()
     {
-        if(_minRoomCount > _maxRoomCount)
-            _minRoomCount = _maxRoomCount - 1;
+        if(_maxRoomCount < _minRoomCount)
+            _maxRoomCount = _minRoomCount - 1;
     }
 
     private void Start()
     {
-        Room createdRoom = CreateRoom(_startRoomConnector, _levelGenerationDataSet.LevelChunks[0]);
+        Room firstCreatedRoom = CreateRoom(_startRoomConnector, _levelGenerationDataSet.LevelChunks[0]);
 
-        GenerateLevel(createdRoom);
+        GenerateLevel(firstCreatedRoom);
     }
 
     private void GenerateLevel(Room previousRoom)
     {
-        if (!TryGetAvailableChunkConnector(previousRoom, out ChunkConnector chunkConnector))
-        {
-            FillEmptySpace();
-            return;
-        }
+        ChunkConnector chunkConnector;
+        if(TryGetAvailableChunkConnector(previousRoom, out ChunkConnector availabeChunkConnector))
+            chunkConnector = availabeChunkConnector;
+        else
+            chunkConnector = FindAvailableConnector();
 
-        GameObject nextRoom;
-        if(_createdRooms.Count < _minRoomCount)
+        if (chunkConnector == null)
+            return;
+
+        GameObject nextRoom = GetRandomRoom();
+        //if(_availableConnectors.Count < _minRoomCount)
+        //{
+        //    do
+        //    {
+        //        nextRoom = GetRandomRoom();
+        //        if (nextRoom.GetComponent<Room>().RoomType != RoomType.EndRoom)
+        //        {
+        //            break;
+        //        }
+        //    } while (true);
+        //}
+        //else
+        //{
+        //    nextRoom = GetRandomRoom();
+        //}
+        if (CheckIsEmptySpaceForChunk(chunkConnector.transform))
         {
             do
             {
                 nextRoom = GetRandomRoom();
-                if (nextRoom.GetComponent<Room>().RoomType != RoomTypes.EndRoom)
+                if (nextRoom.GetComponent<Room>().RoomType == RoomType.EndRoom)
                 {
                     break;
                 }
             } while (true);
         }
-        else
-        {
-            nextRoom = GetRandomRoom();
-        }
 
         Room newRoom = CreateRoom(chunkConnector, nextRoom);
 
-
-        if (_availableConnectors.Count == 0)
-            return;
-
         if (_createdRooms.Count < _maxRoomCount)
             GenerateLevel(newRoom);  
+        else
+            FillEmptySpace();
     }
 
-    private Room CreateRoom(ChunkConnector connector, GameObject newRoom, bool flagUpdateConnectors = true)
+    private ChunkConnector FindAvailableConnector()
+    {
+        foreach(Room room in _createdRooms)
+        {
+            if (room.ChunkConnectors.Count == 0)
+                continue;
+
+            foreach(ChunkConnector connector in room.ChunkConnectors)
+            {
+                if (!connector.IsConnected)
+                    return connector;
+            }
+        }
+        return null;
+    }
+
+    private bool CheckIsEmptySpaceForChunk(Transform chunkPosition)
+    {
+        return Physics.Raycast(chunkPosition.position, chunkPosition.transform.forward, 5f);
+    }
+
+    private Room CreateRoom(ChunkConnector connector, GameObject newRoom)
     {
         Room createdRoom = connector.ConnectNewRoom(newRoom);
 
         _createdRooms.Add(createdRoom);
-        if(flagUpdateConnectors)
-            UdpateAvailableConnectors();
 
         return createdRoom;
     }
@@ -80,14 +109,10 @@ public class LevelGenerator : MonoBehaviour
     public void FillEmptySpace()
     {
         if(_availableConnectors.Count == 0) 
-        {
             return;
-        }
 
         foreach(ChunkConnector connector in _availableConnectors) 
-        {
-            CreateRoom(connector, _levelGenerationDataSet.LevelChunks[3], false);
-        }
+            CreateRoom(connector, _levelGenerationDataSet.LevelChunks[3]);
     }
 
     private bool TryGetAvailableChunkConnector(Room room, out ChunkConnector chunkConnector)
@@ -102,24 +127,6 @@ public class LevelGenerator : MonoBehaviour
         }
         chunkConnector = null;
         return false;
-    }
-
-    private void UdpateAvailableConnectors()
-    {
-        foreach (Room room in _createdRooms)
-        {
-            foreach (ChunkConnector connector in room.ChunkConnectors)
-            {
-                if (!connector.IsConnected && !_availableConnectors.Contains(connector))
-                {
-                    _availableConnectors.Add(connector);
-                }
-                else if(_availableConnectors.Contains(connector))
-                {
-                    _availableConnectors.Remove(connector);
-                }
-            }
-        }
     }
 
     private GameObject GetRandomRoom()

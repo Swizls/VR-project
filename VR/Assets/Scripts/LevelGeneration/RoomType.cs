@@ -1,4 +1,4 @@
-public enum RoomTypes
+public enum RoomType
 {
     StartRoom,
     Connector,

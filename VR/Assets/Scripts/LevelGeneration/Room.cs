@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private RoomTypes _roomType;
+    [SerializeField] private RoomType _roomType;
 
     [SerializeField] private Transform _startConnector;
 
     [SerializeField] private List<ChunkConnector> _chunkConnectors;
 
-    public RoomTypes RoomType => _roomType;
+    public RoomType RoomType => _roomType;
 
     public Transform StartConnector => _startConnector;
 
