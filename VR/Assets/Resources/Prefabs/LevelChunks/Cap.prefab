@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 128885155503586244}
   - component: {fileID: 7176121858436669192}
   m_Layer: 0
-  m_Name: PolyShape
+  m_Name: Sturcture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,3 +398,4 @@ MonoBehaviour:
   _roomType: 2
   _startConnector: {fileID: 2387218000784420301}
   _chunkConnectors: []
+  _sturcture: {fileID: 5769658988960322545}

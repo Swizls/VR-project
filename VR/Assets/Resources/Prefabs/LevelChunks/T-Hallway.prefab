@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 128885155503586244}
   - component: {fileID: 7176121858436669192}
   m_Layer: 0
-  m_Name: PolyShape
+  m_Name: Structure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,3 +584,4 @@ MonoBehaviour:
   _chunkConnectors:
   - {fileID: 2040909400247711065}
   - {fileID: 4831845874355479533}
+  _sturcture: {fileID: 5769658988960322545}

@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _maxRoomCount;
 
     private List<Room> _createdRooms = new List<Room>();
+    private List<ChunkConnector> _availableConnectors= new List<ChunkConnector>();
 
     public List<Room> CreatedRooms => _createdRooms;
 
@@ -35,27 +36,27 @@ public class LevelGenerator : MonoBehaviour
         if(TryGetAvailableChunkConnector(previousRoom, out ChunkConnector availabeChunkConnector))
             chunkConnector = availabeChunkConnector;
         else
-            chunkConnector = FindAvailableConnector();
+            chunkConnector = GetFirstAvailableConnector();
 
         if (chunkConnector == null)
             return;
 
         GameObject nextRoom = GetRandomRoom();
-        //if(_availableConnectors.Count < _minRoomCount)
-        //{
-        //    do
-        //    {
-        //        nextRoom = GetRandomRoom();
-        //        if (nextRoom.GetComponent<Room>().RoomType != RoomType.EndRoom)
-        //        {
-        //            break;
-        //        }
-        //    } while (true);
-        //}
-        //else
-        //{
-        //    nextRoom = GetRandomRoom();
-        //}
+        if (_availableConnectors.Count < _minRoomCount)
+        {
+            do
+            {
+                nextRoom = GetRandomRoom();
+                if (nextRoom.GetComponent<Room>().RoomType != RoomType.EndRoom)
+                {
+                    break;
+                }
+            } while (true);
+        }
+        else
+        {
+            nextRoom = GetRandomRoom();
+        }
         if (CheckIsEmptySpaceForChunk(chunkConnector.transform))
         {
             do
@@ -76,20 +77,29 @@ public class LevelGenerator : MonoBehaviour
             FillEmptySpace();
     }
 
-    private ChunkConnector FindAvailableConnector()
+    private void UpdateAvailabeConnectors()
     {
-        foreach(Room room in _createdRooms)
+        List<ChunkConnector> connectors = new List<ChunkConnector>();
+        foreach (Room room in _createdRooms)
         {
             if (room.ChunkConnectors.Count == 0)
                 continue;
 
-            foreach(ChunkConnector connector in room.ChunkConnectors)
+            foreach (ChunkConnector connector in room.ChunkConnectors)
             {
                 if (!connector.IsConnected)
-                    return connector;
+                    connectors.Add(connector);
             }
         }
-        return null;
+        _availableConnectors = connectors;
+    }
+
+    private ChunkConnector GetFirstAvailableConnector()
+    {
+        if(_availableConnectors.Count == 0)
+            return null;
+
+        return _availableConnectors[0];
     }
 
     private bool CheckIsEmptySpaceForChunk(Transform chunkPosition)
@@ -102,6 +112,7 @@ public class LevelGenerator : MonoBehaviour
         Room createdRoom = connector.ConnectNewRoom(newRoom);
 
         _createdRooms.Add(createdRoom);
+        UpdateAvailabeConnectors();
 
         return createdRoom;
     }
