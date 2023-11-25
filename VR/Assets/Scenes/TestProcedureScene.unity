@@ -1434,10 +1434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9ff6823eca61b4ba57dca6b0f415eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelGenerationDataSet: {fileID: 11400000, guid: 5052c4c2252280242ba2cb50d411ef62, type: 2}
+  _roomCollection: {fileID: 11400000, guid: 5052c4c2252280242ba2cb50d411ef62, type: 2}
   _startRoomConnector: {fileID: 8296890356762585995}
-  _minRoomCount: 13
-  _maxRoomCount: 72
+  _minRoomCount: 10
+  _maxRoomCount: 50
 --- !u!43 &1575671836
 Mesh:
   m_ObjectHideFlags: 0

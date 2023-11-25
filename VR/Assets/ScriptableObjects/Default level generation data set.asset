@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed9dcfd5364ddc4291720bd55647b00, type: 3}
+  m_Script: {fileID: 11500000, guid: dadaf4639f584d243b59bf15912cc3b5, type: 3}
   m_Name: Default level generation data set
   m_EditorClassIdentifier: 
-  _levelChunks:
-  - {fileID: 6166039202928582335, guid: bb752b65b75a4e243b38d2c8b25d635f, type: 3}
-  - {fileID: 4447940409008795976, guid: 3883390512486f14b802ccd97aeca266, type: 3}
-  - {fileID: 6166039202928582335, guid: 28f2fed3b24fcb041b96916cbea3de5d, type: 3}
-  - {fileID: 6166039202928582335, guid: fdc5dd711b28b134e99eb130d48ee956, type: 3}
+  _rooms:
+  - {fileID: 861077727345969386, guid: bb752b65b75a4e243b38d2c8b25d635f, type: 3}
+  - {fileID: 1571778407293452949, guid: 3883390512486f14b802ccd97aeca266, type: 3}
+  - {fileID: 861077727345969386, guid: 28f2fed3b24fcb041b96916cbea3de5d, type: 3}
+  - {fileID: 861077727345969386, guid: fdc5dd711b28b134e99eb130d48ee956, type: 3}

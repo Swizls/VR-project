@@ -38,7 +38,7 @@ public class Room : MonoBehaviour
         CalculateRoomSizeAndCenter();
     }
 
-    private void CalculateRoomSizeAndCenter()
+    public void CalculateRoomSizeAndCenter()
     {
         Renderer renderer = _sturcture.GetComponent<Renderer>();
         _roomSize = renderer.bounds.size;

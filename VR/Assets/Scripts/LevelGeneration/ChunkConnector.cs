@@ -20,4 +20,12 @@ public class ChunkConnector : MonoBehaviour
         _isConnected = true;
         return roomComponent;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, transform.forward);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, -transform.forward);
+    }
 }
