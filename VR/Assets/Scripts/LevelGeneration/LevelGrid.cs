@@ -13,10 +13,10 @@ public class LevelGrid
 
     public GridCell[,] GridCells => _gridCells;
 
-    public LevelGrid(uint gridSizeX, uint gridSizeZ, uint cellSize)
+    public LevelGrid(uint gridSizeX, uint gridSizeY, uint cellSize)
     {
         Width = gridSizeX;
-        Height = gridSizeZ;
+        Height = gridSizeY;
         CellSize = cellSize;
 
         _gridCells = new GridCell[Width, Height];
@@ -29,32 +29,55 @@ public class LevelGrid
         if (!IsValidPosition(position, room))
             return false;
 
-        ConvertWorldPositionToCellIndex(position, out int x, out int y);
-        for (int height = y - (int)room.RoomSize.z / 2; height < y + (int)room.RoomSize.z / 2; height++)
+        Vector2Int cellPosition = ConvertWorldPositionToCellIndex(position);
+        Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
+        GridCell[,] cellsToOccupy = GetCellsInArea(cellPosition, roomSize);
+
+        foreach (GridCell cell in cellsToOccupy)
         {
-            for (int width = x - (int)room.RoomSize.x / 2; width < x + (int)room.RoomSize.x / 2; width++)
-            {
-                _gridCells[width, height].SetCellOccupation();
-            }
+            cell.SetCellOccupation();
         }
         return true;
     }
 
     public bool IsValidPosition(Vector3 position, Room room)
     {
-        ConvertWorldPositionToCellIndex(position, out int x, out int y);
+        Vector2Int cellPosition = ConvertWorldPositionToCellIndex(position);
+        Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
+        GridCell[,] cellsToCheck = GetCellsInArea(cellPosition, roomSize);
 
-        for (int height = y - (int)room.RoomSize.z/2; height < y + (int)room.RoomSize.z/2; height++)
+        foreach(GridCell cell in cellsToCheck)
         {
-            for (int width = x - (int)room.RoomSize.x / 2; width < x + (int)room.RoomSize.x / 2; width++)
+            if (cell.IsOccupied)
+                return false;
+        }
+        return true;
+    }
+
+    private GridCell[,] GetCellsInArea(Vector2Int position, Vector2Int areaSize)
+    {
+        GridCell[,] cells = new GridCell[areaSize.x, areaSize.y];
+
+        for (int i = 0; i < areaSize.x; i++)
+        {
+            for (int j = 0; j < areaSize.y; j++)
             {
-                if (_gridCells[width, height].IsOccupied)
+                int xIndex = position.x + i;
+                int yIndex = position.y + j;
+
+                if (xIndex >= 0 && xIndex < _gridCells.GetLength(0) &&
+                    yIndex >= 0 && yIndex < _gridCells.GetLength(1))
                 {
-                    return false;
+                    cells[i, j] = _gridCells[xIndex, yIndex];
+                }
+                else
+                {
+                    cells[i, j] = null;
                 }
             }
         }
-        return true;
+
+        return cells;
     }
 
     private void CreateGrid()
@@ -68,9 +91,23 @@ public class LevelGrid
         }
     }
 
-    private void ConvertWorldPositionToCellIndex(Vector3 position, out int x, out int y)
+    private Vector2Int ConvertWorldPositionToCellIndex(Vector3 position)
     {
-        x = (int)(position.x / CellSize);
-        y = (int)(position.z / CellSize);
+        int x = (int)(position.x / CellSize);
+        int y = (int)(position.z / CellSize);
+        return new Vector2Int(x, y);
+    }
+
+    private Vector2Int ConvertRoomSizeToCellSize(Room room)
+    {
+        int sizeX = room.RoomSize.x / (int)CellSize;
+        int sizeY = room.RoomSize.y / (int)CellSize;
+
+        if (sizeX == 0)
+            sizeX = 1;
+        if (sizeY == 0)
+            sizeY = 1;
+
+        return new Vector2Int(sizeX + 1, sizeY + 1);
     }
 }

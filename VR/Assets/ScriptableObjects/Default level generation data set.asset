@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadaf4639f584d243b59bf15912cc3b5, type: 3}
   m_Name: Default level generation data set
   m_EditorClassIdentifier: 
+  _startRoom: {fileID: 5469149573659256342, guid: 25243dc5a3f133d41bc25f1c64974e67, type: 3}
   _rooms:
   - {fileID: 861077727345969386, guid: bb752b65b75a4e243b38d2c8b25d635f, type: 3}
   - {fileID: 1571778407293452949, guid: 3883390512486f14b802ccd97aeca266, type: 3}

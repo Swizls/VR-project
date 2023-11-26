@@ -13,6 +13,6 @@ public class GridTester : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawCube(transform.position, _room.RoomSize);
+        Gizmos.DrawCube(transform.position, new Vector3(_room.RoomSize.x, 5f, _room.RoomSize.y));
     }
 }

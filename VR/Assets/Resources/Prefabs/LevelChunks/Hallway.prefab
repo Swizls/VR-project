@@ -416,6 +416,6 @@ MonoBehaviour:
   _chunkConnectors:
   - {fileID: 2040909400247711065}
   _sturcture: {fileID: 5769658988960322545}
-  _roomSize: {x: 3, y: 3, z: 5.5}
+  _roomSize: {x: 4, y: 6}
   _roomCenter: {x: 0, y: 0.5, z: -2.75}
   _roomOffsetFromConnector: {x: 0, y: -0.5, z: 2.75}
