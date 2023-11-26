@@ -12,13 +12,22 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _minRoomCount;
     [SerializeField] private int _maxRoomCount;
 
+    [Space]
+    [Header("Grid settings")]
+
+    [SerializeField] private uint _gridHeight;
+    [SerializeField] private uint _gridWidth;
+    [SerializeField] private uint _cellSize;
+
+    private LevelGrid _grid;
     private RoomSelector _roomSelector;
 
     private List<Room> _createdRooms = new List<Room>();
-    private List<ChunkConnector> _availableConnectors= new List<ChunkConnector>();
+    private List<ChunkConnector> _availableConnectors = new List<ChunkConnector>();
 
     public int MinRoomCount => _minRoomCount;
     public int MaxRoomCount => _maxRoomCount;
+    public LevelGrid Grid => _grid;
     public List<ChunkConnector> AvailableConnectors => _availableConnectors;
     public List<Room> CreatedRooms => _createdRooms;
 
@@ -32,16 +41,17 @@ public class LevelGenerator : MonoBehaviour
     {
         Initialize();
 
-        Room firstCreatedRoom = CreateRoom(_startRoomConnector, _roomCollection.Rooms[0].gameObject);
+        //Room firstCreatedRoom = CreateRoom(_startRoomConnector, _roomCollection.Rooms[0].gameObject);
 
-        GenerateLevel(firstCreatedRoom);
-        Debug.Log("Generation ended");
-        Debug.Log("Room count: " + _createdRooms.Count);
+        //GenerateLevel(firstCreatedRoom);
+        //Debug.Log("Generation ended");
+        //Debug.Log("Room count: " + _createdRooms.Count);
     }
 
     private void Initialize()
     {
         _roomSelector = new RoomSelector(this, _roomCollection);
+        _grid = new LevelGrid(_gridHeight, _gridWidth, _cellSize);
     }
 
     private void GenerateLevel(Room previousRoom)
