@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using LevelGenaration;
 
 [CreateAssetMenu(fileName = "Default level generation data set", menuName = "Generation data sets/Default level generation data set")]
 public class RoomCollection : ScriptableObject

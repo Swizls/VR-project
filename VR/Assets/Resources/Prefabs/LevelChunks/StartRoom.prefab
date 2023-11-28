@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 2199012699754428796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -169,13 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomType: 0
-  _startConnector: {fileID: 0}
+  _startConnector: {fileID: 643556475316529013}
   _chunkConnectors:
   - {fileID: 1952573624975880371}
   _sturcture: {fileID: 5771178115519211430}
-  _roomSize: {x: 12, y: 12}
-  _roomCenter: {x: 0, y: 2.0000002, z: 0}
-  _roomOffsetFromConnector: {x: 0, y: 0, z: 0}
+  _roomSize: {x: 11, y: 11}
+  _roomCenter: {x: 5, y: 2.0000002, z: -5}
+  _roomOffsetFromPivot: {x: -5, y: -2.0000002, z: 5}
 --- !u!1 &3272399570206183093
 GameObject:
   m_ObjectHideFlags: 0

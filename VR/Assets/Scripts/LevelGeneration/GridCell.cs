@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GridCell
+namespace LevelGenaration
 {
-    private bool _isOccupied = false;
-
-    public bool IsOccupied => _isOccupied;
-
-    public GridCell() { }
-
-    public void SetCellOccupation()
+    public class GridCell
     {
-        _isOccupied = true;
+        private bool _isOccupied = false;
+        private Room _roomOnCell = null;
+
+        public bool IsOccupied => _isOccupied;
+        public Room RoomOnCell => _roomOnCell;
+
+        public void SetCellOccupation(Room room)
+        {
+            _isOccupied = true;
+            _roomOnCell = room;
+        }
     }
 }

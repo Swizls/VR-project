@@ -1,31 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class ChunkConnector : MonoBehaviour
-{
-    private bool _isConnected = false;
-
-    public bool IsConnected => _isConnected;
-
-    public Room ConnectNewRoom(GameObject newRoom)
+namespace LevelGenaration
+{ 
+    public class ChunkConnector : MonoBehaviour
     {
-        GameObject room = Instantiate(newRoom);
+        private Room _connectorsRoom;
+        private bool _isConnected = false;
+        private ConnectorDirectionAxis _direction;
 
-        Room roomComponent = room.GetComponent<Room>();
+        public ConnectorDirectionAxis Direction => _direction;
+        public bool IsConnected => _isConnected;
+        public Room ConnectorsRoom => _connectorsRoom;
 
-        roomComponent.StartConnector.position = transform.position;
-        roomComponent.StartConnector.rotation = transform.rotation;
-        _isConnected = true;
-        return roomComponent;
-    }
+        private void Start()
+        {
+            if (_connectorsRoom == null)
+                _connectorsRoom = GetComponentInParent<Room>();
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, transform.forward);
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, -transform.forward);
+            SetConnectorDirectionAxis();
+        }
+
+        private void SetConnectorDirectionAxis()
+        {
+            switch (transform.rotation.eulerAngles.y)
+            {
+                case 90:
+                case 180:
+                    _direction = ConnectorDirectionAxis.Horizontal;
+                    break;
+                default:
+                    _direction = ConnectorDirectionAxis.Vertical;
+                    break;
+            }
+
+        }
+
+        public Room ConnectNewRoom(GameObject nextRoom)
+        {
+            GameObject createdRoom = Instantiate(nextRoom);
+
+            Room createdRoomComponent = createdRoom.GetComponent<Room>();
+
+            createdRoomComponent.SetPreviousRoom(_connectorsRoom);
+
+            createdRoomComponent.StartConnector.position = transform.position;
+            createdRoomComponent.StartConnector.rotation = transform.rotation;
+            _isConnected = true;
+            return createdRoomComponent;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, transform.forward);
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, -transform.forward);
+        }
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(LevelGenerator))]
 public class LevelGridVisualizer : MonoBehaviour
@@ -17,8 +19,12 @@ public class LevelGridVisualizer : MonoBehaviour
                 for(int z = 0; z < _levelGenerator.Grid.Width; z++) 
                 {
                     if (_levelGenerator.Grid.GridCells[x, z].IsOccupied) 
-                    { 
+                    {
                         Gizmos.color = Color.red;
+                        float posX = x * _levelGenerator.Grid.CellSize;
+                        float posY = z * _levelGenerator.Grid.CellSize;
+
+                        Gizmos.DrawSphere(new Vector3(posX, 0, posY), 1f);
                     }
                     else
                     {
@@ -27,7 +33,7 @@ public class LevelGridVisualizer : MonoBehaviour
 
                     Gizmos.DrawWireCube(new Vector3(x, 0, z)
                         * _levelGenerator.Grid.CellSize,
-                        new Vector3(_levelGenerator.Grid.CellSize, 1, _levelGenerator.Grid.CellSize));
+                        new Vector3(_levelGenerator.Grid.CellSize, 0, _levelGenerator.Grid.CellSize));
                 }
             }
         }

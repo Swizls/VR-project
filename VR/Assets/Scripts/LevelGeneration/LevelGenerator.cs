@@ -1,7 +1,8 @@
 using LevelGenaration;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _minRoomCount;
     [SerializeField] private int _maxRoomCount;
 
+    [SerializeField] private bool _generateLevelOnStart;
+
     [Space]
     [Header("Grid settings")]
 
-    [SerializeField] private uint _gridHeight;
-    [SerializeField] private uint _gridWidth;
-    [SerializeField] private uint _cellSize;
+    [SerializeField] private int _gridHeight;
+    [SerializeField] private int _gridWidth;
+    [SerializeField] private int _cellSize;
 
     private LevelGrid _grid;
     private RoomSelector _roomSelector;
@@ -40,12 +43,23 @@ public class LevelGenerator : MonoBehaviour
     private void Start()
     {
         Initialize();
+        if (_generateLevelOnStart)
+            StartGeneration();
+    }
 
-        //Room firstCreatedRoom = CreateRoom(_startRoomConnector, _roomCollection.Rooms[0].gameObject);
+    private void StartGeneration()
+    {
+        Vector3 startRoomSpawnPosition = _grid.GetRandomPositionOnGrid();
 
-        //GenerateLevel(firstCreatedRoom);
-        //Debug.Log("Generation ended");
-        //Debug.Log("Room count: " + _createdRooms.Count);
+        Room startRoom = Instantiate(_roomCollection.StartRoom, startRoomSpawnPosition, Quaternion.identity);
+
+        startRoom.transform.position -= _roomCollection.StartRoom.RoomCenter;
+
+        _createdRooms.Add(startRoom);
+
+        _grid.TrySetOccupationOnGrid(startRoomSpawnPosition, startRoom);
+
+        StartCoroutine(GenerateLevel(startRoom));
     }
 
     private void Initialize()
@@ -54,21 +68,25 @@ public class LevelGenerator : MonoBehaviour
         _grid = new LevelGrid(_gridHeight, _gridWidth, _cellSize);
     }
 
-    private void GenerateLevel(Room previousRoom)
+    private IEnumerator GenerateLevel(Room previousRoom)
     {
-        ChunkConnector chunkConnector = GetAvailableConnector(previousRoom);
+        while(_createdRooms.Count < _maxRoomCount)
+        {
+            yield return new WaitForSeconds(1);
+            ChunkConnector chunkConnector = GetAvailableConnector(previousRoom);
 
-        if(chunkConnector == null && _availableConnectors.Count != 0)
-            chunkConnector = _availableConnectors[0];
+            if (chunkConnector == null && _availableConnectors.Count != 0)
+                chunkConnector = _availableConnectors[0];
 
-        GameObject nextRoom = _roomSelector.SelectRoom(chunkConnector);
+            GameObject nextRoom = _roomSelector.SelectRoom(chunkConnector);
 
-        Room newRoom = CreateRoom(chunkConnector, nextRoom);
+            Room newRoom = CreateRoom(chunkConnector, nextRoom);
 
-        if (_createdRooms.Count < _maxRoomCount)
-            GenerateLevel(newRoom);  
-        else
-            FillEmptySpace();
+            if (_createdRooms.Count < _maxRoomCount)
+                GenerateLevel(newRoom);
+            else
+                FillEmptySpace();
+        }
     }
 
     private void UpdateAvailabeConnectors()
@@ -91,6 +109,7 @@ public class LevelGenerator : MonoBehaviour
     private Room CreateRoom(ChunkConnector connector, GameObject newRoom)
     {
         Room createdRoom = connector.ConnectNewRoom(newRoom);
+        _grid.TrySetOccupationOnGrid(createdRoom.StartConnector.position, createdRoom);
 
         _createdRooms.Add(createdRoom);
         UpdateAvailabeConnectors();
@@ -122,12 +141,12 @@ public class LevelGenerator : MonoBehaviour
     public void RestartGeneration()
     {
         ClearLevel();
-        Room firstCreatedRoom = CreateRoom(_startRoomConnector, _roomCollection.Rooms[0].gameObject);
-        GenerateLevel(firstCreatedRoom);
+        StartGeneration();
     }
 
     public void ClearLevel() 
     {
+        Initialize();
         for (int i = 0; i < _createdRooms.Count; i++)
         {
             Destroy(_createdRooms[i].gameObject);

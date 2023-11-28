@@ -1,4 +1,5 @@
 using UnityEngine;
+using LevelGenaration;
 
 public class GridTester : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class GridTester : MonoBehaviour
     public void Test()
     {
         _levelGenerator.Grid.TrySetOccupationOnGrid(transform.position, _room);
+
+        Vector2Int position = _levelGenerator.Grid.ConvertWorldPositionToCellIndex(transform.position);
+
+        Debug.Log(position);
     }
 
     private void OnDrawGizmos()

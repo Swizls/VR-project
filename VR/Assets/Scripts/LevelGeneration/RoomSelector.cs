@@ -16,7 +16,7 @@ namespace LevelGenaration
             _roomDataSet = roomsDataSet;
         }
 
-        public GameObject SelectRoom(ChunkConnector roomConnector)
+        public GameObject SelectRoom(ChunkConnector currentRoomConnector)
         {
             Room nextRoom;
             if (_levelGeneratorReference.AvailableConnectors.Count < _levelGeneratorReference.MinRoomCount)
@@ -24,15 +24,10 @@ namespace LevelGenaration
             else
                 nextRoom = GetRandomRoom();
 
-            if (IsObsturcionForward(roomConnector.transform))
+            if (!_levelGeneratorReference.Grid.IsValidPosition(currentRoomConnector, nextRoom))
                 nextRoom = _roomDataSet.Rooms[3];
 
             return nextRoom.gameObject;
-        }
-
-        private bool IsObsturcionForward(Transform connectorTranform)
-        {
-            return Physics.Raycast(connectorTranform.position, -connectorTranform.forward, DISTANCE_TO_CHECK_OBSTRUCTION);
         }
 
         private Room GetRandomRoom()

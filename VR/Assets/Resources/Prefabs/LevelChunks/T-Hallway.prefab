@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb93a8ae816e7c42b0a8d18bee4b4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _connectorsRoom: {fileID: 861077727345969386}
 --- !u!1 &4472856400076572523
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb93a8ae816e7c42b0a8d18bee4b4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _connectorsRoom: {fileID: 861077727345969386}
 --- !u!1 &5769658988960322545
 GameObject:
   m_ObjectHideFlags: 0
