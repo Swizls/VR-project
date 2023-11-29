@@ -109,7 +109,7 @@ public class LevelGenerator : MonoBehaviour
     private Room CreateRoom(ChunkConnector connector, GameObject newRoom)
     {
         Room createdRoom = connector.ConnectNewRoom(newRoom);
-        _grid.TrySetOccupationOnGrid(createdRoom.StartConnector.position, createdRoom);
+        _grid.TrySetOccupationOnGrid(createdRoom.StartConnector.position, createdRoom, connector.Direction);
 
         _createdRooms.Add(createdRoom);
         UpdateAvailabeConnectors();

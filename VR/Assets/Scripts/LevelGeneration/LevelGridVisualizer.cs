@@ -21,6 +21,10 @@ public class LevelGridVisualizer : MonoBehaviour
                     if (_levelGenerator.Grid.GridCells[x, z].IsOccupied) 
                     {
                         Gizmos.color = Color.red;
+
+                        if (_levelGenerator.Grid.GridCells[x, z].IsCentralCell)
+                            Gizmos.color = Color.white;
+
                         float posX = x * _levelGenerator.Grid.CellSize;
                         float posY = z * _levelGenerator.Grid.CellSize;
 

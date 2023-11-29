@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb93a8ae816e7c42b0a8d18bee4b4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _connectorsRoom: {fileID: 861077727345969386}
 --- !u!1 &4472856400076572523
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb93a8ae816e7c42b0a8d18bee4b4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _connectorsRoom: {fileID: 861077727345969386}
 --- !u!1 &5769658988960322545
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +560,7 @@ Transform:
   m_GameObject: {fileID: 6166039202928582335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -0.5, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -587,6 +585,6 @@ MonoBehaviour:
   - {fileID: 2040909400247711065}
   - {fileID: 4831845874355479533}
   _sturcture: {fileID: 5769658988960322545}
-  _roomSize: {x: 6, y: 9}
-  _roomCenter: {x: 0, y: 1.4999998, z: -15.25}
-  _roomOffsetFromConnector: {x: 0, y: -0.49999976, z: 4.25}
+  _roomSize: {x: 7, y: 9.5}
+  _roomCenter: {x: 1.5, y: 1.9999998, z: -9.25}
+  _roomOffsetFromPivot: {x: -1.5, y: -1.9999998, z: 9.25}

@@ -14,7 +14,7 @@ namespace LevelGenaration
 
         [SerializeField] private GameObject _sturcture;
 
-        [SerializeField] private Vector2Int _roomSize;
+        [SerializeField] private Vector2 _roomSize;
         [SerializeField] private Vector3 _roomCenter;
         [SerializeField] private Vector3 _roomOffsetFromPivot;
 
@@ -23,7 +23,7 @@ namespace LevelGenaration
         public RoomType RoomType => _roomType;
         public Transform StartConnector => _startConnector;
         public List<ChunkConnector> ChunkConnectors => _chunkConnectors;
-        public Vector2Int RoomSize => _roomSize;
+        public Vector2 RoomSize => _roomSize;
         public Vector3 RoomCenter => _roomCenter;
         public Vector3 RoomOffsetFromPivot => _roomOffsetFromPivot;
         public Room PreviousConnectedRoom => _previousConnectedRoom;
@@ -53,7 +53,7 @@ namespace LevelGenaration
         public void CalculateRoomSizeAndCenter()
         {
             Renderer renderer = _sturcture.GetComponent<Renderer>();
-            _roomSize = new Vector2Int((int)renderer.bounds.size.x, (int)renderer.bounds.size.z);
+            _roomSize.Set(renderer.bounds.size.x + 1, renderer.bounds.size.z + 1);
             _roomCenter = renderer.bounds.center;
             _roomOffsetFromPivot = transform.position - _roomCenter;
         }

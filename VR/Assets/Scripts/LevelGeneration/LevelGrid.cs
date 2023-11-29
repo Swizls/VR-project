@@ -1,17 +1,10 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace LevelGenaration
 {
-
     public class LevelGrid
     {
-        private const int DEFAULT_GRID_WIDTH = 100;
-        private const int DEFAULT_GRID_HEIGHT = 100;
-        private const int DEFAULT_CELL_SIZE = 6;
-
         public readonly int Width;
         public readonly int Height;
         public readonly int CellSize;
@@ -34,13 +27,16 @@ namespace LevelGenaration
             CreateGrid();
         }
 
-        public bool TrySetOccupationOnGrid(Vector3 position, Room room)
+        public bool TrySetOccupationOnGrid(Vector3 position, Room room, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
         {
-            if (!IsValidPosition(position, room))
-                return false;
-
             Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
+            if (directionAxis != ConnectorDirectionAxis.Vertical)
+                roomSize.Set(roomSize.y, roomSize.x);
+
             GridCell[,] cellsToOccupy = GetCellsInArea(position, roomSize);
+
+            if (!IsValidPosition(cellsToOccupy))
+                return false;
 
             foreach (GridCell cell in cellsToOccupy)
             {
@@ -49,12 +45,8 @@ namespace LevelGenaration
             return true;
         }
 
-        public bool IsValidPosition(Vector3 position, Room room)
+        public bool IsValidPosition(GridCell[,] cellsToCheck)
         {
-            Vector2Int cellPosition = ConvertWorldPositionToCellIndex(position);
-            Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
-            GridCell[,] cellsToCheck = GetCellsInArea(position, roomSize);
-
             foreach(GridCell cell in cellsToCheck)
             {
                 if (cell.IsOccupied)
@@ -68,6 +60,9 @@ namespace LevelGenaration
         public bool IsValidPosition(ChunkConnector connector, Room room)
         {
             Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
+            if (connector.Direction != ConnectorDirectionAxis.Vertical)
+                roomSize.Set(roomSize.y, roomSize.x);
+
             GridCell[,] cellsToCheck = GetCellsInArea(connector.transform.position, roomSize);
 
             foreach (GridCell cell in cellsToCheck)
@@ -98,6 +93,7 @@ namespace LevelGenaration
             }
 
             Vector2Int centralCellIndex = ConvertWorldPositionToCellIndex(position);
+            _gridCells[centralCellIndex.x, centralCellIndex.y].SetCellAsCentral();
             Vector3 cellWorldPosition = ConvertCellPositionToWorld(centralCellIndex);
 
             Vector3 direction = (position - cellWorldPosition).normalized;
@@ -155,15 +151,10 @@ namespace LevelGenaration
 
         private Vector2Int ConvertRoomSizeToCellSize(Room room)
         {
-            int sizeX = room.RoomSize.x / CellSize;
-            int sizeY = room.RoomSize.y / CellSize;
+            float sizeX = room.RoomSize.x / CellSize;
+            float sizeY = room.RoomSize.y / CellSize;
 
-            if (sizeX % CellSize != 0)
-                sizeX += 1;
-            if (sizeY % CellSize != 0)
-                sizeY += 1;
-
-            return new Vector2Int(sizeX, sizeY);
+            return new Vector2Int(Mathf.CeilToInt(sizeX), Mathf.CeilToInt(sizeY));
         }
     }
 }
