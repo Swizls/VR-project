@@ -53,7 +53,7 @@ namespace LevelGenaration
         public void CalculateRoomSizeAndCenter()
         {
             Renderer renderer = _sturcture.GetComponent<Renderer>();
-            _roomSize.Set(renderer.bounds.size.x + 1, renderer.bounds.size.z + 1);
+            _roomSize.Set(renderer.bounds.size.x, renderer.bounds.size.z);
             _roomCenter = renderer.bounds.center;
             _roomOffsetFromPivot = transform.position - _roomCenter;
         }

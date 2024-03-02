@@ -25,7 +25,7 @@ namespace LevelGenaration
             switch (transform.rotation.eulerAngles.y)
             {
                 case 90:
-                case 180:
+                case 270:
                     _direction = ConnectorDirectionAxis.Horizontal;
                     break;
                 default:

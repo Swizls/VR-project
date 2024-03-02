@@ -6,28 +6,35 @@ namespace LevelGenaration
 {
     public class RoomSelector
     {
-        private const float DISTANCE_TO_CHECK_OBSTRUCTION = 20f;
-        private LevelGenerator _levelGeneratorReference;
         private RoomCollection _roomDataSet;
+        private LevelGrid _levelGrid;
+        private RoomHandler _roomHandler;
 
-        public RoomSelector(LevelGenerator levelGeneratorReference, RoomCollection roomsDataSet)
+        public RoomSelector(RoomCollection roomDataSet, LevelGrid levelGrid, RoomHandler roomHandler)
         {
-            _levelGeneratorReference = levelGeneratorReference;
-            _roomDataSet = roomsDataSet;
+            _roomDataSet = roomDataSet;
+            _levelGrid = levelGrid;
+            _roomHandler = roomHandler;
         }
 
-        public GameObject SelectRoom(ChunkConnector currentRoomConnector)
+        public Room SelectRoom(ChunkConnector connector)
         {
-            Room nextRoom;
-            if (_levelGeneratorReference.AvailableConnectors.Count < _levelGeneratorReference.MinRoomCount)
-                nextRoom = GetRandomRoom(RoomType.Connector);
+            Room room;
+            if (_roomHandler.AvailableConnectors.Count == 1)
+                room = GetRandomRoom(RoomType.Connector);
             else
-                nextRoom = GetRandomRoom();
+                room = GetRandomRoom();
 
-            if (!_levelGeneratorReference.Grid.IsValidPosition(currentRoomConnector, nextRoom))
-                nextRoom = _roomDataSet.Rooms[3];
+            if (_levelGrid.CanConnectNewRoom(connector, room))
+                return room;
 
-            return nextRoom.gameObject;
+            for(int i = 0; i < _roomDataSet.Rooms.Count; i++)
+            {
+                if (_levelGrid.CanConnectNewRoom(connector, _roomDataSet.Rooms[i]))
+                    return _roomDataSet.Rooms[i];
+            }
+
+            return null;
         }
 
         private Room GetRandomRoom()

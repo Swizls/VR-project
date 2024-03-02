@@ -9,14 +9,15 @@ public class GridTester : MonoBehaviour
 
     public void Test()
     {
-        _levelGenerator.Grid.TrySetOccupationOnGrid(transform.position, _room, _direction);
+        _levelGenerator.Grid.SetOccupationOnGrid(transform.position, _room, _direction);
     }
 
-    public void GetCellIndex()
+    public void GetCellInfo()
     {
         Vector2Int position = _levelGenerator.Grid.ConvertWorldPositionToCellIndex(transform.position);
 
         Debug.Log(position);
+        Debug.Log("Room on this cell: " + _levelGenerator.Grid.GridCells[position.x, position.y].RoomOnCell);
     }
 
     private void OnDrawGizmos()

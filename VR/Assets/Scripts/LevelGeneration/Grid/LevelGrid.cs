@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace LevelGenaration
 {
@@ -27,25 +29,19 @@ namespace LevelGenaration
             CreateGrid();
         }
 
-        public bool TrySetOccupationOnGrid(Vector3 position, Room room, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
+        public void SetOccupationOnGrid(Vector3 position, Room room, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
         {
-            Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
+            Vector2Int roomSizeInCells = ConvertRoomSizeToCellSize(room);
             if (directionAxis != ConnectorDirectionAxis.Vertical)
-                roomSize.Set(roomSize.y, roomSize.x);
+                roomSizeInCells.Set(roomSizeInCells.y, roomSizeInCells.x);
 
-            GridCell[,] cellsToOccupy = GetCellsInArea(position, roomSize);
-
-            if (!IsValidPosition(cellsToOccupy))
-                return false;
+            List<GridCell> cellsToOccupy = GetCellsInArea(position, roomSizeInCells);
 
             foreach (GridCell cell in cellsToOccupy)
-            {
                 cell.SetCellOccupation(room);
-            }
-            return true;
         }
 
-        public bool IsValidPosition(GridCell[,] cellsToCheck)
+        public bool IsValidPosition(List<GridCell> cellsToCheck)
         {
             foreach(GridCell cell in cellsToCheck)
             {
@@ -57,17 +53,17 @@ namespace LevelGenaration
             return true;
         }
 
-        public bool IsValidPosition(ChunkConnector connector, Room room)
+        public bool CanConnectNewRoom(ChunkConnector connector, Room room)
         {
             Vector2Int roomSize = ConvertRoomSizeToCellSize(room);
             if (connector.Direction != ConnectorDirectionAxis.Vertical)
                 roomSize.Set(roomSize.y, roomSize.x);
 
-            GridCell[,] cellsToCheck = GetCellsInArea(connector.transform.position, roomSize);
+            List<GridCell> cellsToCheck = GetCellsInArea(connector.transform.position, roomSize);
 
             foreach (GridCell cell in cellsToCheck)
             {
-                if (cell.IsOccupied)
+                if(cell.IsOccupied)
                 {
                     if (cell.RoomOnCell != connector.ConnectorsRoom)
                     {
@@ -85,9 +81,11 @@ namespace LevelGenaration
             return new Vector3Int(randomWidth, 0, randomHeight);
         }
 
-        private GridCell[,] GetCellsInArea(Vector3 position, Vector2Int areaSize, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
+        private List<GridCell> GetCellsInArea(Vector3 position, Vector2Int areaSize, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
         {
-            if(directionAxis != ConnectorDirectionAxis.Vertical) 
+            List<GridCell> cellsInArea = new List<GridCell>();
+
+            if (directionAxis != ConnectorDirectionAxis.Vertical)
             {
                 areaSize = new Vector2Int(areaSize.y, areaSize.x);
             }
@@ -100,29 +98,58 @@ namespace LevelGenaration
 
             Vector2Int actualAreaSize = new Vector2Int(areaSize.x + Mathf.Abs(Mathf.RoundToInt(direction.x)),
                 areaSize.y + Mathf.Abs(Mathf.RoundToInt(direction.z)));
-            GridCell[,] cells = new GridCell[actualAreaSize.x, actualAreaSize.y];
 
-            for (int i = 0; i < actualAreaSize.x; i++)
+            for (int i = 0; i < areaSize.x; i++)
             {
-                for (int j = 0; j < actualAreaSize.y; j++)
+                for (int j = 0; j < areaSize.y; j++)
                 {
-                    int xIndex = centralCellIndex.x + (i - actualAreaSize.x / 2);
-                    int yIndex = centralCellIndex.y + (j - actualAreaSize.y / 2);
+                    int xIndex = centralCellIndex.x + (i - areaSize.x / 2);
+                    int yIndex = centralCellIndex.y + (j - areaSize.y / 2);
 
                     if (xIndex >= 0 && xIndex < _gridCells.GetLength(0) &&
                         yIndex >= 0 && yIndex < _gridCells.GetLength(1))
                     {
-                        cells[i, j] = _gridCells[xIndex, yIndex];
-                    }
-                    else
-                    {
-                        cells[i, j] = null;
+                        cellsInArea.Add(_gridCells[xIndex, yIndex]);
                     }
                 }
             }
 
-            return cells;
+            return cellsInArea;
         }
+
+        //private List<GridCell> GetCellsInArea(Vector3 position, Vector2Int areaSize, ConnectorDirectionAxis directionAxis = ConnectorDirectionAxis.Vertical)
+        //{
+        //    List<GridCell> cellsInArea = new List<GridCell>();
+
+        //    if (directionAxis != ConnectorDirectionAxis.Vertical)
+        //    {
+        //        areaSize = new Vector2Int(areaSize.y, areaSize.x);
+        //    }
+
+        //    Vector2Int centralCellIndex = ConvertWorldPositionToCellIndex(position);
+
+        //    // —мещение от центральной клетки до угла области
+        //    int offsetX = Mathf.FloorToInt(areaSize.x / 2f);
+        //    int offsetY = Mathf.FloorToInt(areaSize.y / 2f);
+
+        //    for (int i = -offsetX; i <= offsetX; i++)
+        //    {
+        //        for (int j = -offsetY; j <= offsetY; j++)
+        //        {
+        //            int xIndex = centralCellIndex.x + i;
+        //            int yIndex = centralCellIndex.y + j;
+
+        //            if (xIndex >= 0 && xIndex < _gridCells.GetLength(0) &&
+        //                yIndex >= 0 && yIndex < _gridCells.GetLength(1))
+        //            {
+        //                cellsInArea.Add(_gridCells[xIndex, yIndex]);
+        //            }
+        //        }
+        //    }
+
+        //    return cellsInArea;
+        //}
+
 
         private void CreateGrid()
         {
@@ -154,7 +181,7 @@ namespace LevelGenaration
             float sizeX = room.RoomSize.x / CellSize;
             float sizeY = room.RoomSize.y / CellSize;
 
-            return new Vector2Int(Mathf.CeilToInt(sizeX), Mathf.CeilToInt(sizeY));
+            return new Vector2Int(Mathf.RoundToInt(sizeX), Mathf.RoundToInt(sizeY));
         }
     }
 }

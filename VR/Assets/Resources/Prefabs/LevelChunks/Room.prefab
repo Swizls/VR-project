@@ -1039,7 +1039,7 @@ MonoBehaviour:
   _startConnector: {fileID: 8910920085183684871}
   _chunkConnectors: []
   _sturcture: {fileID: 3709095983562366438}
-  _roomSize: {x: 11, y: 8.5}
+  _roomSize: {x: 10, y: 7.5}
   _roomCenter: {x: 2.5, y: 2.25, z: 5.75}
   _roomOffsetFromPivot: {x: -2.5, y: -2.25, z: -5.75}
 --- !u!1 &4662285564678688761

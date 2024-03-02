@@ -11,6 +11,9 @@ namespace LevelGeneration.DebugTools
         {
             base.OnInspectorGUI();
 
+            if (Application.isPlaying)
+                return;
+
             Room room = (Room)target;
 
             if (GUILayout.Button("Calculate room size"))

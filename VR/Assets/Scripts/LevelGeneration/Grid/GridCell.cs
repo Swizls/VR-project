@@ -14,6 +14,9 @@ namespace LevelGenaration
 
         public void SetCellOccupation(Room room)
         {
+            if (_isOccupied)
+                return;
+
             _isOccupied = true;
             _roomOnCell = room;
         }

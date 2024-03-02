@@ -14,6 +14,8 @@ namespace LevelGeneration.DebugTools
 
             if (GUILayout.Button("Test Occupation"))
                 gridTester.Test();
+            if (GUILayout.Button("Informantion about cell"))
+                gridTester.GetCellInfo();
         }
     }
 }

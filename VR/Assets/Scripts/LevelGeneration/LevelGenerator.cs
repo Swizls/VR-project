@@ -1,14 +1,12 @@
 using LevelGenaration;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private RoomCollection _roomCollection;
-
-    [SerializeField] private ChunkConnector _startRoomConnector;
 
     [SerializeField] private int _minRoomCount;
     [SerializeField] private int _maxRoomCount;
@@ -23,22 +21,13 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int _cellSize;
 
     private LevelGrid _grid;
+    private RoomHandler _roomHandler;
     private RoomSelector _roomSelector;
+    private RoomPlacer _roomPlacer;
 
     private List<Room> _createdRooms = new List<Room>();
-    private List<ChunkConnector> _availableConnectors = new List<ChunkConnector>();
 
-    public int MinRoomCount => _minRoomCount;
-    public int MaxRoomCount => _maxRoomCount;
     public LevelGrid Grid => _grid;
-    public List<ChunkConnector> AvailableConnectors => _availableConnectors;
-    public List<Room> CreatedRooms => _createdRooms;
-
-    private void OnValidate()
-    {
-        if(_maxRoomCount < _minRoomCount)
-            _maxRoomCount = _minRoomCount - 1;
-    }
 
     private void Start()
     {
@@ -52,106 +41,51 @@ public class LevelGenerator : MonoBehaviour
         Vector3 startRoomSpawnPosition = _grid.GetRandomPositionOnGrid();
 
         Room startRoom = Instantiate(_roomCollection.StartRoom, startRoomSpawnPosition, Quaternion.identity);
-
-        startRoom.transform.position -= _roomCollection.StartRoom.RoomCenter;
-
-        _createdRooms.Add(startRoom);
-
-        _grid.TrySetOccupationOnGrid(startRoomSpawnPosition, startRoom);
+        _roomHandler.StartRoom = startRoom;
+        _grid.SetOccupationOnGrid(startRoom.transform.position, startRoom);
+        startRoom.transform.position += _roomCollection.StartRoom.RoomOffsetFromPivot;
 
         StartCoroutine(GenerateLevel(startRoom));
     }
 
     private void Initialize()
     {
-        _roomSelector = new RoomSelector(this, _roomCollection);
-        _grid = new LevelGrid(_gridHeight, _gridWidth, _cellSize);
+        _grid = new LevelGrid(_gridWidth, _gridWidth, _cellSize);
+        _roomPlacer = new RoomPlacer(_grid);
+        _roomHandler = new RoomHandler(_roomPlacer);
+        _roomSelector = new RoomSelector(_roomCollection, _grid, _roomHandler);
     }
 
     private IEnumerator GenerateLevel(Room previousRoom)
     {
-        while(_createdRooms.Count < _maxRoomCount)
+        while (_roomHandler.CreatedRoom.Count < _maxRoomCount || _roomHandler.AvailableConnectors.Count > 0)
         {
             yield return new WaitForSeconds(1);
-            ChunkConnector chunkConnector = GetAvailableConnector(previousRoom);
+            ChunkConnector connector = _roomHandler.GetAvailableConnector();
 
-            if (chunkConnector == null && _availableConnectors.Count != 0)
-                chunkConnector = _availableConnectors[0];
+            Room selectedRoom = _roomSelector.SelectRoom(connector);
 
-            GameObject nextRoom = _roomSelector.SelectRoom(chunkConnector);
-
-            Room newRoom = CreateRoom(chunkConnector, nextRoom);
-
-            if (_createdRooms.Count < _maxRoomCount)
-                GenerateLevel(newRoom);
+            if (selectedRoom != null)
+                _roomPlacer.PlaceRoom(connector, selectedRoom);
             else
-                FillEmptySpace();
+                throw new System.Exception("New room is null");
         }
     }
-
-    private void UpdateAvailabeConnectors()
-    {
-        List<ChunkConnector> connectors = new List<ChunkConnector>();
-        foreach (Room room in _createdRooms)
-        {
-            if (room.ChunkConnectors.Count == 0)
-                continue;
-
-            foreach (ChunkConnector connector in room.ChunkConnectors)
-            {
-                if (!connector.IsConnected)
-                    connectors.Add(connector);
-            }
-        }
-        _availableConnectors = connectors;
-    }
-
-    private Room CreateRoom(ChunkConnector connector, GameObject newRoom)
-    {
-        Room createdRoom = connector.ConnectNewRoom(newRoom);
-        _grid.TrySetOccupationOnGrid(createdRoom.StartConnector.position, createdRoom, connector.Direction);
-
-        _createdRooms.Add(createdRoom);
-        UpdateAvailabeConnectors();
-
-        return createdRoom;
-    }
-
-    public void FillEmptySpace()
-    {
-        if(_availableConnectors.Count == 0) 
-            return;
-
-        foreach(ChunkConnector connector in _availableConnectors) 
-            CreateRoom(connector, _roomCollection.Rooms[3].gameObject);
-    }
-
-    private ChunkConnector GetAvailableConnector(Room room)
-    {
-        for (int i = 0; i < room.ChunkConnectors.Count; i++)
-        {
-            if (!room.ChunkConnectors[i].IsConnected)
-            {
-                return room.ChunkConnectors[i];
-            }
-        }
-        return null;
-    }
-
+    
     public void RestartGeneration()
     {
         ClearLevel();
+        Initialize();
         StartGeneration();
     }
-
-    public void ClearLevel() 
+    private void ClearLevel()
     {
-        Initialize();
-        for (int i = 0; i < _createdRooms.Count; i++)
+        if (_roomHandler.CreatedRoom.Count == 0)
+            return;
+
+        foreach (Room room in _roomHandler.CreatedRoom)
         {
-            Destroy(_createdRooms[i].gameObject);
+            Destroy(room.gameObject);
         }
-        _createdRooms.Clear();
-        _availableConnectors.Clear();
     }
 }

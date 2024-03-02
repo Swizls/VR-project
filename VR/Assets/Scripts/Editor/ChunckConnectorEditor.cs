@@ -15,6 +15,8 @@ namespace LevelGeneration.DebugTools
 
             if (GUILayout.Button("Check connection"))
                 Debug.Log("Chunk connection: " + chunkConnector.IsConnected);
+            if (GUILayout.Button("Check connector direction"))
+                Debug.Log("Connector direction: " + chunkConnector.Direction);
         }
     }
 }

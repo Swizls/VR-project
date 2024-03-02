@@ -14,18 +14,10 @@ namespace LevelGeneration.DebugTools
             LevelGenerator levelGenerator = (LevelGenerator)target;
 
             if (!Application.isPlaying)
-            {
                 return;
-            }
 
             if (GUILayout.Button("Restart generation"))
-            {
                 levelGenerator.RestartGeneration();
-            }
-            if (GUILayout.Button("Clear level"))
-            {
-                levelGenerator.ClearLevel();
-            }
         }
     }
 }
