@@ -5464,6 +5464,75 @@ MonoBehaviour:
   m_UIHoverExited:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1008429353
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.96376
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4999969
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.865942
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889868155254141075, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179949367108702117, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_Name
+      value: Berreta
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612986580242932169, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671994513918580968, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: _hasMagazineOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665520988701269957, guid: d0f06b26470ade94483cce7762457e81, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0f06b26470ade94483cce7762457e81, type: 3}
 --- !u!43 &1051104075
 Mesh:
   m_ObjectHideFlags: 0
@@ -8300,3 +8369,4 @@ SceneRoots:
   - {fileID: 3714202472055329847}
   - {fileID: 1820005523}
   - {fileID: 139819929}
+  - {fileID: 1008429353}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -9,6 +10,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform _magazineSpot;
 
     [SerializeField] private GameObject _magazinePrefab;
+
+    [SerializeField] private GameObject _flashLight;
 
     [Space]
     [Header("Audio clips")]
@@ -33,6 +36,7 @@ public class Weapon : MonoBehaviour
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(Shoot);
+        grabbable.deactivated.AddListener(StopShoot);
 
         if(_hasMagazineOnStart)
         {
@@ -85,6 +89,12 @@ public class Weapon : MonoBehaviour
         }
 
         SetAudioClipAndPlay(_weaponShotSound);
+        _flashLight.SetActive(true);
+    }
+
+    private void StopShoot(DeactivateEventArgs arg0)
+    {
+        _flashLight.SetActive(false);
     }
 
     private void Eject() 
