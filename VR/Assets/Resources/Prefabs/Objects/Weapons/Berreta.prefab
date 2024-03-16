@@ -318,7 +318,7 @@ MonoBehaviour:
   _weaponReloadSound: {fileID: 8300000, guid: 3ae27ffaec09cff47a8f2feefb287c27, type: 3}
   _emptyWeaponSound: {fileID: 8300000, guid: f019ad15dff9c004bbb12e571e5cb858, type: 3}
   _weaponEjectedMagazineSound: {fileID: 8300000, guid: f019ad15dff9c004bbb12e571e5cb858, type: 3}
-  _hasMagazineOnStart: 0
+  _hasMagazineOnStart: 1
 --- !u!82 &4563608830376095007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5006344273812808251
 Transform:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.81951207, b: 0.41037738, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -494,7 +494,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

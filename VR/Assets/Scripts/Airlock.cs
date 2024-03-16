@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Airlock : MonoBehaviour
 {
     private const string OPENING_ANIMATION = "Opened";
@@ -13,16 +14,19 @@ public class Airlock : MonoBehaviour
     private bool _isOpen = false;
 
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Open()
     {
         _isOpen = true;
         _animator.SetBool("isOpen", _isOpen);
+        _audioSource.Play();
         StartCoroutine(HoldOpen());
     }
 
