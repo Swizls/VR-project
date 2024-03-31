@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 2499299177519671794}
   - component: {fileID: 6671994513918580968}
   - component: {fileID: 4563608830376095007}
+  - component: {fileID: 3656364846509955168}
   m_Layer: 9
   m_Name: Berreta
   m_TagString: Untagged
@@ -94,8 +95,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179949367108702117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.6921928, y: 0.4882771, z: 0.10732438, w: -0.5205152}
+  m_LocalPosition: {x: 15.339068, y: 2.4154525, z: 23.299057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -415,6 +416,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3656364846509955168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179949367108702117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c7db78fe554f643a60bdbb26abb046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Pistol
 --- !u!1 &5612986580242932169
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +441,7 @@ GameObject:
   - component: {fileID: 8665520988701269957}
   - component: {fileID: 6237651762674358048}
   m_Layer: 0
-  m_Name: Flash
+  m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

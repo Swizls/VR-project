@@ -14,14 +14,14 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        List<BaseItem> createdItems = new List<BaseItem>();
         foreach (var item in _items)
         {
-            if(item.gameObject is null)
-            {
-                Instantiate(item);
-            }
-            item.Hide();
+            BaseItem createdItem = Instantiate(item);
+            createdItems.Add(createdItem);
+            createdItem.Hide();
         }
+        _items = createdItems;
     }
 
     public void AddItem(BaseItem item)

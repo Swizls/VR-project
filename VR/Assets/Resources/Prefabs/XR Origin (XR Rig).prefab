@@ -3857,8 +3857,9 @@ GameObject:
   - component: {fileID: 6495616137184919169}
   - component: {fileID: 7178785880340163439}
   - component: {fileID: 2601087826411158888}
+  - component: {fileID: 8774186183898242617}
   m_Layer: 0
-  m_Name: Holster
+  m_Name: ItemRecivier
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3889,10 +3890,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3583
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -3915,6 +3916,19 @@ MonoBehaviour:
   _cameraOffset: {x: -0.25, y: -0.5, z: 0}
   _cameraReference: {fileID: 1128778436288520222}
   _debug: 0
+--- !u!114 &8774186183898242617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408759300863713362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6430c06ad73ff240be71ac33a671fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventory: {fileID: 7759076472553263108}
 --- !u!1 &5202718307064282915
 GameObject:
   m_ObjectHideFlags: 0

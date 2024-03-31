@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemRecivier : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Inventory _inventory;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.TryGetComponent<BaseItem>(out BaseItem item))
+        {
+            _inventory.AddItem(item);
+            return;
+        }
+
+        item = other.GetComponentInParent<BaseItem>();
+
+        if (item != null)
+        {
+            _inventory.AddItem(item);
+        }
     }
 }
