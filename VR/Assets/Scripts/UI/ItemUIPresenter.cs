@@ -5,7 +5,7 @@ public class ItemUIPresenter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textMeshPro;
 
-    private BaseItem _item;
+    private Item _item;
     private InventoryRenderer _inventory;
 
     private void Start()
@@ -14,7 +14,7 @@ public class ItemUIPresenter : MonoBehaviour
             throw new System.ArgumentNullException();
     }
 
-    public void Initialize(BaseItem item, InventoryRenderer inventoryReference)
+    public void Initialize(Item item, InventoryRenderer inventoryReference)
     {
         _item = item;
         _inventory = inventoryReference;

@@ -39,7 +39,7 @@ public class InventoryRenderer : MonoBehaviour
 
     private void Render()
     {
-        foreach(BaseItem item in _inventory.Items)
+        foreach(Item item in _inventory.Items)
         {
             var createdUIItem = Instantiate(_inventoryItemUIPrefab, gameObject.transform);
             createdUIItem.GetComponent<ItemUIPresenter>().Initialize(item, this);
@@ -47,7 +47,7 @@ public class InventoryRenderer : MonoBehaviour
         }
     }
 
-    public void RemoveItem(BaseItem item, GameObject itemPresenter)
+    public void RemoveItem(Item item, GameObject itemPresenter)
     {
         item.gameObject.SetActive(true);
         _itemsUI.Remove(itemPresenter);

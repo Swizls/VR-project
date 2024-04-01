@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class ItemRecivier : MonoBehaviour
+public class ItemReceiver : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<BaseItem>(out BaseItem item))
+        if(other.TryGetComponent(out Item item))
         {
             _inventory.AddItem(item);
             return;
         }
 
-        item = other.GetComponentInParent<BaseItem>();
+        item = other.GetComponentInParent<Item>();
 
         if (item != null)
         {
