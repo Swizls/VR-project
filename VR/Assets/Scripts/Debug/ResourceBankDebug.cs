@@ -14,7 +14,12 @@ public class ResourceBankDebug : MonoBehaviour
 
         _presenter = FindAnyObjectByType<ResourceBankPresenter>();
 
-        _presenter.Bank.BankValuesUpdated = Debug;
+        _presenter.Bank.BankValuesUpdated += Debug;
+    }
+
+    private void OnDisable()
+    {
+        _presenter.Bank.BankValuesUpdated -= Debug;
     }
 
     private void Debug()

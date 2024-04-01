@@ -11,15 +11,22 @@ public class ResourceBank
 
     public void Add(string name, int amount = 10)
     {
-        if(CheckValues(name, amount))
-            _resources[name] = amount;
+        if (!CheckValues(name, amount))
+            return;
+
+        if (!_resources.ContainsKey(name))
+            _resources[name] = 0;
+
+        _resources[name] += amount;
 
         BankValuesUpdated?.Invoke();
     }
     public void Remove(string name, int amount = 10)
     {
-        if(CheckValues(name, amount) && _resources.ContainsKey(name))
-            _resources[name] -= amount;
+        if (!CheckValues(name, amount) && _resources.ContainsKey(name))
+            return;
+        
+        _resources[name] -= amount;
 
         BankValuesUpdated?.Invoke();
     }
