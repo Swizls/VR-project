@@ -1,23 +1,28 @@
 using SOData;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(CraftRecipesContainer))]
 public class CraftHandler : MonoBehaviour
 {
     [SerializeField] private ResourceBankPresenter _resourceBankPresenter;
-    [SerializeField] private CraftRecipe _selectedCraftRecipe;
     [SerializeField] private Transform _spawnPointTransform;
+    private CraftRecipesContainer _recipesContainer;
+
+    private void Start()
+    {
+        _recipesContainer = GetComponent<CraftRecipesContainer>();
+    }
 
     public void Craft()
     {
-        Dictionary<string, int> requiredResources = _selectedCraftRecipe.RequiredResources.ToDictionary();
+        Dictionary<string, int> requiredResources = _recipesContainer.SelectedCraftRecipe.RequiredResources.ToDictionary();
 
-        if (!CheckIsEnoughResources(requiredResources))
+        if (!IsEnoughResources(requiredResources))
             return;
 
-        Instantiate(_selectedCraftRecipe.ItemPrefab, _spawnPointTransform.position, _spawnPointTransform.rotation);
+        Instantiate(_recipesContainer.SelectedCraftRecipe.ItemPrefab, _spawnPointTransform.position, _spawnPointTransform.rotation);
         DeductResources(requiredResources);
     }
 
@@ -29,7 +34,7 @@ public class CraftHandler : MonoBehaviour
         }
     }
 
-    private bool CheckIsEnoughResources(Dictionary<string, int> requiredResources)
+    private bool IsEnoughResources(Dictionary<string, int> requiredResources)
     {
         for (int i = 0; i < requiredResources.Count; i++)
         {
