@@ -24,6 +24,9 @@ public class Airlock : MonoBehaviour
 
     public void Open()
     {
+        if (_isOpen)
+            return;
+
         _isOpen = true;
         _animator.SetBool("isOpen", _isOpen);
         _audioSource.Play();

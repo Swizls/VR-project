@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private GameObject _magazinePrefab;
 
-    [SerializeField] private GameObject _flashLight;
+    [SerializeField] private GameObject _muzzleFlash;
 
     [Space]
     [Header("Audio clips")]
@@ -24,6 +24,8 @@ public class Weapon : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private NoiseMaker _noiseMaker;
+
     private GameObject _loadedMagazine;
 
     private bool _isMagazineLoaded;
@@ -33,6 +35,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _noiseMaker = GetComponent<NoiseMaker>();
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(Shoot);
@@ -88,13 +91,15 @@ public class Weapon : MonoBehaviour
             }
         }
 
+        if (_noiseMaker)
+            _noiseMaker.MakeNoise();
         SetAudioClipAndPlay(_weaponShotSound);
-        _flashLight.SetActive(true);
+        _muzzleFlash.SetActive(true);
     }
 
     private void StopShoot(DeactivateEventArgs arg0)
     {
-        _flashLight.SetActive(false);
+        _muzzleFlash.SetActive(false);
     }
 
     private void Eject() 
@@ -112,8 +117,6 @@ public class Weapon : MonoBehaviour
         else
         {
             GameObject magazine = Instantiate(_magazinePrefab, transform.position, transform.rotation);
-
-            //Destroy(magazine.GetComponent<Magazine>());
         }
 
         _isMagazineLoaded = false;

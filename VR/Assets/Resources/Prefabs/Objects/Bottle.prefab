@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2563040840022165}
   - component: {fileID: 1596676627379493415}
   - component: {fileID: 1443081789515177464}
-  m_Layer: 0
+  - component: {fileID: 8040040378568837188}
+  m_Layer: 9
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +63,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2563040840022165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +330,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8040040378568837188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159721537140050688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81c336c7cae2c04b9411e35a1e34e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Bottle
+  _resources:
+  - {fileID: 11400000, guid: 6b10775ef4f7633488531350ecf364cc, type: 2}
 --- !u!1001 &3236717878421476327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -400,6 +416,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7c541235aec6d1d459082e167d82720e, type: 3}
       propertyPath: m_Name
       value: Bottle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7c541235aec6d1d459082e167d82720e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
