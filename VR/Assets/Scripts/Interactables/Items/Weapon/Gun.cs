@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Weapon : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Transform _magazineReloadTrigger;
@@ -85,7 +84,7 @@ public class Weapon : MonoBehaviour
 
         if(hit.collider != null) 
         { 
-            if(hit.collider.TryGetComponent(out HitReaction hitable))
+            if(hit.collider.TryGetComponent(out IHitReaction hitable))
             {
                 hitable.HitReaction();
             }

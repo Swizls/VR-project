@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using EnemyAI;
 
-public class RagdollHandler : MonoBehaviour, HitReaction
+public class RagdollHandler : MonoBehaviour, IHitReaction
 {
     [SerializeField] private GameObject _boneRoot;
 
@@ -30,7 +30,7 @@ public class RagdollHandler : MonoBehaviour, HitReaction
         _enemyBehaviourHandler = GetComponent<EnemyBehaviourHandler>();
     }
 
-    public void HitReaction()
+    public void HitReaction(int dagame)
     {
         if (!_mainCollider.enabled)
             return;

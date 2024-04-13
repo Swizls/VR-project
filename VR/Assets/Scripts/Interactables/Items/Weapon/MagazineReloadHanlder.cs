@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MagazineReloadHanlder : MonoBehaviour
 {
-    private Weapon _weapon;
+    private Gun _weapon;
 
     private void Start()
     {
-        _weapon = GetComponentInParent<Weapon>();
+        _weapon = GetComponentInParent<Gun>();
     }
 
     private void OnTriggerEnter(Collider other)

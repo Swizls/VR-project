@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class Knife : MonoBehaviour
 {
-    private void Attack(HitReaction hitable)
+    private void Attack(IHitReaction hitable)
     {
         hitable.HitReaction();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out HitReaction hitable))
+        if(other.TryGetComponent(out IHitReaction hitable))
             Attack(hitable);
     }
 }
