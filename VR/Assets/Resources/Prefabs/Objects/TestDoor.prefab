@@ -42,11 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4181987907308440973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e2f8c194c1ba648ad06c739eba8270, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c467f9c7327ecd4ca29c1616ac9665b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorObject: {fileID: 8093510576947896927}
-  _rotationSpeed: 5
+  _doorObject: {fileID: 0}
+  _rotationSpeed: 0
   _isLocked: 0
 --- !u!1 &6888564098138442321
 GameObject:
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6888564098138442321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022a1d1c22662fc4cb448e624682ce99, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ef58a086721184ab24f020655b7ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  _handler: {fileID: 2159867838479442764}
+  _handler: {fileID: 0}
 --- !u!1 &7829601712441202029
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7829601712441202029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022a1d1c22662fc4cb448e624682ce99, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ef58a086721184ab24f020655b7ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  _handler: {fileID: 4179548976371616793}
+  _handler: {fileID: 0}
 --- !u!1 &7866159802228960405
 GameObject:
   m_ObjectHideFlags: 0

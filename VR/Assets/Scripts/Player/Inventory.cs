@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<Item> _items;
     [SerializeField] private Transform _rightHandTransform;
-
+    
     public List<Item> Items => _items;
 
     public Action<Item> InventoryUpdated;
