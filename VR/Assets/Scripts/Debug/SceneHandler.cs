@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartLevel : MonoBehaviour
+public class SceneHandler : MonoBehaviour
 {
     [SerializeField] private Scene _scene;
 

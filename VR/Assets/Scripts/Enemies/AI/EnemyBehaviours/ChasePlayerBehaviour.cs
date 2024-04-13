@@ -20,7 +20,7 @@ namespace EnemyAI
 
         public override void Update()
         {
-            _enemyReference.EnemyMover.Agent.SetDestination(_enemyReference.PlayerTransform.position);
+            _enemyReference.EnemyMover.Agent.SetDestination(_enemyReference.PlayerReference.transform.position);
         }
 
         public override void Exit()

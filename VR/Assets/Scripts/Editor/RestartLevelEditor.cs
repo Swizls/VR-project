@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(RestartLevel))]
+[CustomEditor(typeof(SceneHandler))]
 public class RestartLevelEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        RestartLevel restartHanlder = (RestartLevel)target;
+        SceneHandler restartHanlder = (SceneHandler)target;
 
         if(Application.isPlaying)
         {

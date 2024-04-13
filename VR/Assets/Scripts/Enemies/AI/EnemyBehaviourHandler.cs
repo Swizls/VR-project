@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 namespace EnemyAI
 {
@@ -16,7 +17,10 @@ namespace EnemyAI
         }
 
         [SerializeField] private StartBehaviuor _startBehaviuor;
-        [SerializeField] private Transform _playerTransform;
+        [SerializeField] private GameObject _player;
+
+        [Header("Stats")]
+        [SerializeField] private int _damage;
 
         [Header("UI")]
         [SerializeField] private GameObject _warningIcon;
@@ -31,9 +35,10 @@ namespace EnemyAI
         private EnemyMover _enemyMover;
         private FieldOfView _fieldOfView;
 
+        public int Damage => _damage;
         public EnemyMover EnemyMover => _enemyMover;
         public GameObject WarningIcon => _warningIcon;
-        public Transform PlayerTransform => _playerTransform;
+        public GameObject PlayerReference => _player;
         public Vector3 PositionToSearch => _positionToSearch;
 
         private void Start()
@@ -41,8 +46,8 @@ namespace EnemyAI
             _enemyMover = GetComponent<EnemyMover>();
             _fieldOfView = GetComponent<FieldOfView>();
 
-            if(_playerTransform == null)
-                _playerTransform = FindObjectOfType<CharacterController>().transform;
+            if(_player == null)
+                _player = FindObjectOfType<CharacterController>().gameObject;
 
             _fieldOfView.PlayerHasBeenSpotted += OnPlayerAppearenceInLineOfSight;
             _fieldOfView.PlayerHasBeenLost += OnPlayerContactLost;
@@ -79,6 +84,7 @@ namespace EnemyAI
         {
             _enemyBehavioursMap = new Dictionary<Type, EnemyBehaviour>();
 
+            _enemyBehavioursMap[typeof(AttackBehaviour)] = new AttackBehaviour(this);
             _enemyBehavioursMap[typeof(ChasePlayerBehaviour)] = new ChasePlayerBehaviour(this);
             _enemyBehavioursMap[typeof(SearchBehaviour)] = new SearchBehaviour(this);
             _enemyBehavioursMap[typeof(IdleBehaviour)] = new IdleBehaviour(this, transform);
@@ -122,12 +128,20 @@ namespace EnemyAI
 
         private void OnPlayerAppearenceInLineOfSight()
         {
-            EnemyBehaviour behaviour = GetBehaviour<ChasePlayerBehaviour>();
+            EnemyBehaviour behaviour = GetBehaviour<AttackBehaviour>();
             SetBehaviour(behaviour);
         }
 
         private void OnPlayerContactLost()
         {
+            EnemyBehaviour behaviour = GetBehaviour<SearchBehaviour>();
+            behaviour.BehaviourEnded += OnSearchEnd;
+            SetBehaviour(behaviour);
+        }
+
+        private void OnSearchEnd(EnemyBehaviour behaviour)
+        {
+            behaviour.BehaviourEnded -= OnSearchEnd;
             ReturnCalmBehaviour();
         }
 
