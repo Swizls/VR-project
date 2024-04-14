@@ -1,137 +1,37 @@
+using System;
 using UnityEngine;
-using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Gun : MonoBehaviour
+public class Gun : Weapon
 {
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private Transform _magazineReloadTrigger;
-    [SerializeField] private Transform _magazineSpot;
-
-    [SerializeField] private GameObject _magazinePrefab;
-
-    [SerializeField] private GameObject _muzzleFlash;
-
-    [Space]
-    [Header("Audio clips")]
-    [SerializeField] private AudioClip _weaponShotSound;
-    [SerializeField] private AudioClip _weaponReloadSound;
-    [SerializeField] private AudioClip _emptyWeaponSound;
-    [SerializeField] private AudioClip _weaponEjectedMagazineSound;
-
-    [SerializeField] private bool _hasMagazineOnStart;
-
-    private AudioSource _audioSource;
-
+    
+    private GunAmmoHandler _ammoHandler;
     private NoiseMaker _noiseMaker;
 
-    private GameObject _loadedMagazine;
-
-    private bool _isMagazineLoaded;
-
-    public bool IsMagazineLoaded => _isMagazineLoaded;
+    public event Action Shot;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         _noiseMaker = GetComponent<NoiseMaker>();
-
-        XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        grabbable.activated.AddListener(Shoot);
-        grabbable.deactivated.AddListener(StopShoot);
-
-        if(_hasMagazineOnStart)
-        {
-            LoadMagazine();
-        }
+        if(_ammoHandler == null)
+            _ammoHandler = GetComponentInChildren<GunAmmoHandler>();
     }
 
-    private void LoadMagazine()
+    public void Shoot(ActivateEventArgs arg0)
     {
-        if (_magazineSpot != null)
-        { 
-            GameObject magazine = Instantiate(_magazinePrefab, _magazineSpot.transform);
-
-            _loadedMagazine = magazine;
-
-            Destroy(magazine.GetComponent<XRGrabInteractable>());
-            Destroy(magazine.GetComponent<Rigidbody>());
-            Destroy(magazine.GetComponent<Magazine>());
-        
-            _hasMagazineOnStart = magazine;
-        }
-
-        _isMagazineLoaded = true;
-
-        SetAudioClipAndPlay(_emptyWeaponSound);
-    }
-
-    private void Update()
-    {
-        InputData.RightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isPressed);
-        if (isPressed)
-        {
-            Eject();
-        }
-    }
-
-    private void Shoot(ActivateEventArgs arg0)
-    {
-        if (!_isMagazineLoaded)
+        if (!_ammoHandler.IsMagazineLoaded)
             return;
 
         Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
 
-        if(hit.collider != null) 
-        { 
-            if(hit.collider.TryGetComponent(out IHitReaction hitable))
-            {
-                hitable.HitReaction();
-            }
-        }
-
-        if (_noiseMaker)
-            _noiseMaker.MakeNoise();
-        SetAudioClipAndPlay(_weaponShotSound);
-        _muzzleFlash.SetActive(true);
-    }
-
-    private void StopShoot(DeactivateEventArgs arg0)
-    {
-        _muzzleFlash.SetActive(false);
-    }
-
-    private void Eject() 
-    {
-        if (!_isMagazineLoaded)
+        if (hit.collider == null)
             return;
 
-        if(_loadedMagazine != null) 
-        { 
-            _loadedMagazine.AddComponent<Rigidbody>();
-            _loadedMagazine.transform.SetParent(null);
+        if (hit.collider.TryGetComponent(out IHitReaction hitable))
+            hitable.HitReaction(Damage);
 
-            _loadedMagazine = null;        
-        }
-        else
-        {
-            GameObject magazine = Instantiate(_magazinePrefab, transform.position, transform.rotation);
-        }
-
-        _isMagazineLoaded = false;
-
-        SetAudioClipAndPlay(_emptyWeaponSound);
-    }
-
-    public void Reload()
-    {
-        if(!_isMagazineLoaded) 
-            LoadMagazine();
-    }
-
-    private void SetAudioClipAndPlay(AudioClip clip)
-    {
-        _audioSource.clip = clip; 
-        _audioSource.Play();
+        _noiseMaker.MakeNoise();
+        Shot?.Invoke();
     }
 }

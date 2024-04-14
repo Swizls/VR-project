@@ -19,7 +19,8 @@ namespace EnemyAI
         [SerializeField] private StartBehaviuor _startBehaviuor;
         [SerializeField] private GameObject _player;
 
-        [Header("Stats")]
+        [Header("Settings")]
+        [SerializeField] private Gun _weapon;
         [SerializeField] private int _damage;
 
         [Header("UI")]
@@ -35,7 +36,7 @@ namespace EnemyAI
         private EnemyMover _enemyMover;
         private FieldOfView _fieldOfView;
 
-        public int Damage => _damage;
+        public Gun Weapon => _weapon;
         public EnemyMover EnemyMover => _enemyMover;
         public GameObject WarningIcon => _warningIcon;
         public GameObject PlayerReference => _player;

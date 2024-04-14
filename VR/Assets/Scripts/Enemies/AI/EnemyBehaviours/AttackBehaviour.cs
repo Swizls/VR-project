@@ -4,7 +4,7 @@ namespace EnemyAI
 {
     public class AttackBehaviour : EnemyBehaviour
     {
-        private const string ATTACK_ANIMATION_NAME = "Idle";
+        private const string ATTACK_ANIMATION_NAME = "PistolShooting";
         private const float DEFAULT_TIMER_ATTACK = 1f;
 
         private float _timerAttack = DEFAULT_TIMER_ATTACK;
@@ -42,8 +42,18 @@ namespace EnemyAI
 
         private void ImitateAttack()
         {
-            if( _target != null )
-                _target.HitReaction(_enemyReference.Damage);
+            if (_target == null)
+                return;
+            
+            _target.HitReaction(_enemyReference.Weapon.Damage);
+
+
+            _enemyReference.Weapon.GetComponent<GunEffectsController>().PlayShotEffects();
+            //if(_enemyReference.Weapon is Gun)
+            //{
+            //    Gun enemyGun = (Gun) _enemyReference.Weapon;
+            //    enemyGun.PlayShotEffects();
+            //}
         }
 
         private void ResetTimer()

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameOverHandler : MonoBehaviour
 {
-    [SerializeField] private SceneHandler _sceneHandler;
-    [SerializeField] private GameObject _playerReference;
+    private SceneHandler _sceneHandler;
+    private GameObject _playerReference;
 
     private void Start()
     {
