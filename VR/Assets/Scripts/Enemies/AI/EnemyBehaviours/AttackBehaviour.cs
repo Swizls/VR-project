@@ -50,11 +50,6 @@ namespace EnemyAI
 
 
             _enemyReference.Weapon.GetComponent<GunEffectsController>().PlayShotEffects();
-            //if(_enemyReference.Weapon is Gun)
-            //{
-            //    Gun enemyGun = (Gun) _enemyReference.Weapon;
-            //    enemyGun.PlayShotEffects();
-            //}
         }
 
         private void ResetTimer()

@@ -6,14 +6,13 @@ public class Footsteps : MonoBehaviour
 {
     [SerializeField] private List<AudioClip> _footstepSounds;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private Mover _targetMover;
+    [SerializeField] private IMovable _targetMover;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
 
-        if (_targetMover == null)
-            throw new System.NullReferenceException();
+        _targetMover = GetComponent<IMovable>();
 
         _targetMover.MovingStateChanged += PlayFootstepsSounds;
     }
@@ -23,9 +22,9 @@ public class Footsteps : MonoBehaviour
         _targetMover.MovingStateChanged -= PlayFootstepsSounds;
     }
 
-    private void PlayFootstepsSounds(bool flag)
+    private void PlayFootstepsSounds(bool movingState)
     {
-        if (flag)
+        if (movingState)
         {
             _audioSource.clip = _footstepSounds[Random.Range(0, _footstepSounds.Count - 1)];
             _audioSource.Play();
