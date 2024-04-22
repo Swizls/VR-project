@@ -6,6 +6,7 @@ public class Health : MonoBehaviour, IHitReaction
     [SerializeField][Range(0, 100)] private int _value;
 
     public event Action Died;
+    public event Action<int> HealthChanged;
 
     public int Value => _value;
 
@@ -20,9 +21,11 @@ public class Health : MonoBehaviour, IHitReaction
             throw new System.ArgumentException();
 
         _value -= damage;
+        HealthChanged?.Invoke(_value);
 
         if (_value <= 0)
             Died?.Invoke();
+
     }
     public void Heal(int healValue)
     {
@@ -30,5 +33,6 @@ public class Health : MonoBehaviour, IHitReaction
             throw new System.ArgumentException();
 
         _value += healValue;
+        HealthChanged?.Invoke(_value);
     }
 }
