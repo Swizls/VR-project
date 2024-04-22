@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using EnemyAI;
 
-public class EnemyMover : MonoBehaviour
+public class EnemyMover : Mover
 {
     [SerializeField] private Transform _startWaypoint = null;
 

@@ -20,6 +20,7 @@ namespace EnemyAI
                 throw new System.ArgumentException();
     
             _enemyReference.EnemyMover.Agent.SetDestination(_startWaypoint);
+            _enemyReference.EnemyMover.StartMoving();
         }
     
         public override void Update()
@@ -29,7 +30,7 @@ namespace EnemyAI
     
         public override void Exit()
         {
-    
+            _enemyReference.EnemyMover.StopMoving();
         }
     }
 }

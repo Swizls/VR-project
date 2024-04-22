@@ -16,6 +16,7 @@ namespace EnemyAI
         public override void Enter()
         {
             _enemyReference.WarningIcon.SetActive(true);
+            _enemyReference.EnemyMover.StartMoving();
         }
 
         public override void Update()
@@ -26,6 +27,8 @@ namespace EnemyAI
         public override void Exit()
         {
             _enemyReference.WarningIcon.SetActive(false);
+            _enemyReference.EnemyMover.StopMoving();
+
         }
     }
 }

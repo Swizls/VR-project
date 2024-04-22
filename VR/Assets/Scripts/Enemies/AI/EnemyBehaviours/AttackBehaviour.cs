@@ -21,6 +21,7 @@ namespace EnemyAI
         {
             _target = _enemyReference.PlayerReference.GetComponent<Health>();
             _enemyReference.EnemyMover.Agent.isStopped = true;
+            _enemyReference.EnemyMover.StopMoving();
         }
 
         public override void Update()

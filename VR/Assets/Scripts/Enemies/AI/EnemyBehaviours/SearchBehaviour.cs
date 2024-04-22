@@ -19,6 +19,7 @@ namespace EnemyAI
         public override void Enter()
         {
             _enemyReference.EnemyMover.Agent.SetDestination(_enemyReference.PositionToSearch);
+            _enemyReference.EnemyMover.StartMoving();
         }
 
         public override void Update()
@@ -36,6 +37,8 @@ namespace EnemyAI
         public override void Exit()
         {
             _timer = DEFAULT_TIMER_TIME;
+            _enemyReference.EnemyMover.StopMoving();
+
         }
     }
 }

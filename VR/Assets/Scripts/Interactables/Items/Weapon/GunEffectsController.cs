@@ -28,6 +28,9 @@ public class GunEffectsController : MonoBehaviour
         _gun = GetComponent<Gun>();
         _gunAmmoHandler = GetComponentInChildren<GunAmmoHandler>();
 
+        if(_muzzleFlash != null)
+            _muzzleFlash.SetActive(false);
+
         _gun.Shot += PlayShotEffects;
         _gunAmmoHandler.ReloadAction += PlayReloadEffects;
         _gunAmmoHandler.EjectAction += PlayEjectEffects;
