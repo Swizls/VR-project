@@ -9,6 +9,7 @@ using UnityEngine;
 [EditorTool("Custom Snap Move", typeof(CustomSnap))]
 public class CustomSnappingTool : EditorTool
 {
+    private const float MIN_DISTANCE_TO_CONNECT = 1f;
     public Texture2D ToolIcon;
 
     private Transform oldTarget;
@@ -33,6 +34,7 @@ public class CustomSnappingTool : EditorTool
         }
     }
 
+    [MenuItem("MyMenu/Log _g")]
     public override void OnToolGUI(EditorWindow window)
     {
         Transform targetTransform = ((CustomSnap) target).transform;
@@ -68,6 +70,7 @@ public class CustomSnappingTool : EditorTool
     {
         Vector3 bestPosition = newPosition;
         float closestDistance = float.PositiveInfinity;
+        Quaternion pointRotation = new Quaternion();
 
         foreach (CustomSnapPoint point in allPoints)
         {
@@ -83,13 +86,15 @@ public class CustomSnappingTool : EditorTool
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
+                    pointRotation = point.transform.rotation;
                     bestPosition = targetPos;
                 }
             }
         }
 
-        if (closestDistance < 0.5f)
+        if (closestDistance < MIN_DISTANCE_TO_CONNECT)
         {
+            //targetTransform.rotation = pointRotation;
             targetTransform.position = bestPosition;
         }
         else

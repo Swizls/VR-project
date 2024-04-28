@@ -6,5 +6,9 @@ public class CustomSnapPoint : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(transform.position, 0.2f); ;
+        Gizmos.color = Color.red;
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        Gizmos.DrawRay(ray);
     }
 }

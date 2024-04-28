@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139984039107118154}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.7071058, z: -0, w: 0.7071078}
   m_LocalPosition: {x: 0.5, y: 0, z: 2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3039401801213962549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &5137488787362066282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
-  m_SelectedVertices: 19000000
+  m_SelectedVertices: 
 --- !u!114 &2545321914955549269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,13 +576,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8530402954211459281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 4, y: 0, z: 2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3039401801213962549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2018236884353519001
 MonoBehaviour:
   m_ObjectHideFlags: 0
