@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using EnemyAI;
+using System.Linq;
 
 public class RagdollHandler : MonoBehaviour, IHitReaction
 {
@@ -28,6 +29,8 @@ public class RagdollHandler : MonoBehaviour, IHitReaction
         _agent = GetComponent<NavMeshAgent>();
         _fieldOfView = GetComponent<FieldOfView>();
         _enemyBehaviourHandler = GetComponent<EnemyBehaviourHandler>();
+
+        DisableRagdoll();
     }
 
     public void HitReaction(int dagame)
@@ -37,9 +40,31 @@ public class RagdollHandler : MonoBehaviour, IHitReaction
         ActivateRagdoll();
     }
 
+    public void DisableRagdoll()
+    {
+        _mainCollider.enabled = true;
+
+        _animator.enabled = true;
+
+        _agent.enabled = true;
+        _fieldOfView.enabled = true;
+        _enemyBehaviourHandler.enabled = true;
+
+        Rigidbody[] childrensRigidBody = _boneRoot.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody child in childrensRigidBody) 
+        {
+            child.isKinematic = true;
+        }
+        Collider[] childrensCollider = _boneRoot.GetComponentsInChildren<Collider>();
+        foreach (Collider child in childrensCollider)
+        {
+            child.enabled = false;
+        }
+
+    }
+
     public void ActivateRagdoll()
     {
-        _mainRigidbody.isKinematic = true;
         _mainCollider.enabled = false;
 
         _animator.enabled = false;
@@ -50,6 +75,15 @@ public class RagdollHandler : MonoBehaviour, IHitReaction
 
         _enemyBehaviourHandler.WarningIcon.SetActive(false);
 
-        _boneRoot.SetActive(true);
+        Rigidbody[] childrensRigidBody = _boneRoot.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody child in childrensRigidBody)
+        {
+            child.isKinematic = false;
+        }
+        Collider[] childrensCollider = _boneRoot.GetComponentsInChildren<Collider>();
+        foreach (Collider child in childrensCollider)
+        {
+            child.enabled = true;
+        }
     }
 }
