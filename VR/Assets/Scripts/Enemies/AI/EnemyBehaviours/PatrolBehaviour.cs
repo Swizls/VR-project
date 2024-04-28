@@ -1,4 +1,5 @@
 using UnityEngine;
+using EnemyAI.Utilites;
 
 namespace EnemyAI 
 { 
@@ -6,31 +7,42 @@ namespace EnemyAI
     {
         private const string ANIMATION_NAME = "Walking";
 
-        private Vector3 _startWaypoint;
-        public PatrolBehaviour(EnemyBehaviourHandler enemyReference, Vector3 startWaypoint) : base(enemyReference)
+        private Vector3 _targetWaypoint;
+        public PatrolBehaviour(EnemyBehaviourHandler enemyReference) : base(enemyReference)
         {
             _animationName = ANIMATION_NAME;
-            _canBeUpdated = false;
-            _startWaypoint = startWaypoint;
+            _canBeUpdated = true;
         }
     
         public override void Enter()
         {
-            if(_startWaypoint == null)
-                throw new System.ArgumentException();
-    
-            _enemyReference.EnemyMover.Agent.SetDestination(_startWaypoint);
+            _targetWaypoint = GetNextWaypoint();
+            MoveToWaypoint();
+
             _enemyReference.EnemyMover.StartMoving();
         }
     
         public override void Update()
         {
-            throw new System.NotImplementedException();
+            if (!EnemyBehaviourUtilities.CheckIsDestinationReached(_enemyReference, _targetWaypoint))
+                return;
+                
+            _targetWaypoint = GetNextWaypoint();
+            MoveToWaypoint();
         }
     
         public override void Exit()
         {
             _enemyReference.EnemyMover.StopMoving();
+        }
+
+        private Vector3 GetNextWaypoint()
+        {
+            return _enemyReference.WaypointCointainer.Waypoints[Random.Range(0, _enemyReference.WaypointCointainer.Waypoints.Length)].transform.position;
+        }
+        private void MoveToWaypoint()
+        {
+            _enemyReference.EnemyMover.Agent.SetDestination(_targetWaypoint);
         }
     }
 }

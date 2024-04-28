@@ -18,6 +18,7 @@ namespace EnemyAI
 
         [SerializeField] private StartBehaviuor _startBehaviuor;
         [SerializeField] private GameObject _player;
+        [SerializeField] private WaypointCointainer _waypointCointainer;
 
         [Header("Settings")]
         [SerializeField] private Gun _weapon;
@@ -41,11 +42,14 @@ namespace EnemyAI
         public GameObject WarningIcon => _warningIcon;
         public GameObject PlayerReference => _player;
         public Vector3 PositionToSearch => _positionToSearch;
+        public WaypointCointainer WaypointCointainer => _waypointCointainer;
 
         private void Start()
         {
             _enemyMover = GetComponent<EnemyMover>();
             _fieldOfView = GetComponent<FieldOfView>();
+
+            _waypointCointainer = FindObjectOfType<WaypointCointainer>();
 
             if(_player == null)
                 _player = FindObjectOfType<CharacterController>().gameObject;
@@ -91,7 +95,7 @@ namespace EnemyAI
             _enemyBehavioursMap[typeof(IdleBehaviour)] = new IdleBehaviour(this, transform);
 
             if(_enemyMover.StartWaypoint != null)
-                _enemyBehavioursMap[typeof(PatrolBehaviour)] = new PatrolBehaviour(this, _enemyMover.StartWaypoint.position);
+                _enemyBehavioursMap[typeof(PatrolBehaviour)] = new PatrolBehaviour(this);
         }
 
         private void SetBehaviour(EnemyBehaviour newBehaviour)
