@@ -93,9 +93,7 @@ namespace EnemyAI
             _enemyBehavioursMap[typeof(ChasePlayerBehaviour)] = new ChasePlayerBehaviour(this);
             _enemyBehavioursMap[typeof(SearchBehaviour)] = new SearchBehaviour(this);
             _enemyBehavioursMap[typeof(IdleBehaviour)] = new IdleBehaviour(this, transform);
-
-            if(_enemyMover.StartWaypoint != null)
-                _enemyBehavioursMap[typeof(PatrolBehaviour)] = new PatrolBehaviour(this);
+            _enemyBehavioursMap[typeof(PatrolBehaviour)] = new PatrolBehaviour(this);
         }
 
         private void SetBehaviour(EnemyBehaviour newBehaviour)
