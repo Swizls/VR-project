@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour, IHitReaction
 {
     [SerializeField][Range(0, 100)] private int _value;
+    [SerializeField] private bool _isGodmodActivated;
 
     public event Action Died;
     public event Action<int> HealthChanged;
@@ -17,6 +18,9 @@ public class Health : MonoBehaviour, IHitReaction
 
     public void TakeDamage(int damage)
     {
+        if (_isGodmodActivated)
+            return;
+
         if(damage < 0) 
             throw new System.ArgumentException();
 

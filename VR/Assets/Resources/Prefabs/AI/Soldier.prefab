@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1965602571645943760}
   - component: {fileID: 7564502129192856574}
   - component: {fileID: 4033022230440103111}
+  - component: {fileID: 2955780803990212973}
   m_Layer: 3
   m_Name: Soldier
   m_TagString: Untagged
@@ -88,9 +89,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6859116899670858875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +301,18 @@ MonoBehaviour:
   _footstepSounds:
   - {fileID: 8300000, guid: 603b6dc3f2448674e934724c9560be12, type: 3}
   _audioSource: {fileID: 7564502129192856574}
+--- !u!114 &2955780803990212973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469529716423452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51feec168b200d841bafabcb6fcb3256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &138426348024393766
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,13 +563,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736851660541137129}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5000006, y: 0.49999943, z: -0.49999943, w: 0.5000006}
-  m_LocalPosition: {x: 0.0583, y: 0, z: -0.009}
+  m_LocalRotation: {x: 0.36349228, y: 0.3449007, z: -0.6274049, w: 0.59605366}
+  m_LocalPosition: {x: -0.16, y: -0.1091, z: 0.0046}
   m_LocalScale: {x: 0.55893946, y: 0.20797049, z: 0.3371}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 740273887948234298}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 60.009, y: -5.16, z: -95.917}
 --- !u!65 &2418465694059751034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -869,6 +882,7 @@ GameObject:
   - component: {fileID: 2370707915283878564}
   - component: {fileID: 5913208832992549598}
   - component: {fileID: 5266169302407919956}
+  - component: {fileID: 624363680023071017}
   m_Layer: 9
   m_Name: Berreta
   m_TagString: Untagged
@@ -1057,6 +1071,33 @@ MonoBehaviour:
   _magazineSpot: {fileID: 0}
   _magazinePrefab: {fileID: 1256717372509479083, guid: f5442598bbe94374598933b363f1f992, type: 3}
   _hasMagazineOnStart: 1
+--- !u!54 &624363680023071017
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620324722376581388}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1654820480406720456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,7 +3311,7 @@ Transform:
   m_GameObject: {fileID: 7228056800451253194}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.0347, y: 0, z: 0.0074}
+  m_LocalPosition: {x: -0.1588, y: -0.1556, z: 0.0567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4306,7 +4347,7 @@ Transform:
   m_GameObject: {fileID: 9171874496910883256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07886, y: 0, z: 0.1836}
+  m_LocalPosition: {x: -0.1394, y: -0.1229, z: 0.2584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

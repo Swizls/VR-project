@@ -45,9 +45,10 @@ namespace EnemyAI
         {
             if (_target == null)
                 return;
+
+            _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
             
             _target.HitReaction(_enemyReference.Weapon.Damage);
-
 
             _enemyReference.Weapon.GetComponent<GunEffectsController>().PlayShotEffects();
         }

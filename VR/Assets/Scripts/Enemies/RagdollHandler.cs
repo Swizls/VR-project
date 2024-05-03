@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using EnemyAI;
-using System.Linq;
 
-public class RagdollHandler : MonoBehaviour, IHitReaction
+public class RagdollHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _boneRoot;
 
@@ -31,13 +30,6 @@ public class RagdollHandler : MonoBehaviour, IHitReaction
         _enemyBehaviourHandler = GetComponent<EnemyBehaviourHandler>();
 
         DisableRagdoll();
-    }
-
-    public void HitReaction(int dagame)
-    {
-        if (!_mainCollider.enabled)
-            return;
-        ActivateRagdoll();
     }
 
     public void DisableRagdoll()
