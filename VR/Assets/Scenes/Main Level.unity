@@ -123,6 +123,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12093056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 761421845533747504, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+  m_PrefabInstance: {fileID: 1755932041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &12093062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12093056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f023aee6e377c504dbe4e5d9e235779e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tabContainer: {fileID: 51875502}
+  _tab: {fileID: 1928658065}
 --- !u!1 &19495290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2203,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &51875502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8567155305436603628, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+  m_PrefabInstance: {fileID: 1755932041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &78666341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2662,6 +2686,7 @@ GameObject:
   - component: {fileID: 157792572}
   - component: {fileID: 157792571}
   - component: {fileID: 157792570}
+  - component: {fileID: 157792574}
   m_Layer: 8
   m_Name: Map
   m_TagString: Untagged
@@ -2758,7 +2783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 157792572}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 157792574}
+        m_TargetAssemblyTypeName: TabSwitcher, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &157792572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2797,6 +2834,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157792568}
   m_CullTransparentMesh: 1
+--- !u!114 &157792574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157792568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f023aee6e377c504dbe4e5d9e235779e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tabContainer: {fileID: 51875502}
+  _tab: {fileID: 747728863}
 --- !u!43 &184296296
 Mesh:
   m_ObjectHideFlags: 0
@@ -16913,6 +16964,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &747728863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635713143935394869, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+  m_PrefabInstance: {fileID: 1755932041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &774021374
 GameObject:
   m_ObjectHideFlags: 0
@@ -40474,6 +40530,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9194720821639802740, guid: fb6284b7261debc4c9e3042ae9235f9b, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194720821639802740, guid: fb6284b7261debc4c9e3042ae9235f9b, type: 3}
+      propertyPath: m_CarveOnlyStationary
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43408,6 +43472,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 12093062}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabSwitcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 374450289391710503, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 475443437147541563, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
       propertyPath: _isGodmodActivated
       value: 1
@@ -43476,6 +43568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1890339863367270096, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_Name
+      value: TabButtons
+      objectReference: {fileID: 0}
     - target: {fileID: 2017829933867008650, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -43527,6 +43623,10 @@ PrefabInstance:
     - target: {fileID: 5561931619877276995, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104272618951505194, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6466196725877041636, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -43596,7 +43696,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3009622296584402703, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
       insertIndex: 1
       addedObject: {fileID: 157792569}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 761421845533747504, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 12093062}
   m_SourcePrefab: {fileID: 100100000, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
 --- !u!224 &1755932042 stripped
 RectTransform:
@@ -45081,6 +45184,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2070119923664775510, guid: e7ab387ed470c25409092ff050ab615e, type: 3}
   m_PrefabInstance: {fileID: 1926650847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1928658065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 594109858257840043, guid: 92776ce21336de44494ce8c5f150a31b, type: 3}
+  m_PrefabInstance: {fileID: 1755932041}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1939132290
 PrefabInstance:
