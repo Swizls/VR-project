@@ -37,6 +37,7 @@ namespace EnemyAI
         private EnemyMover _enemyMover;
         private FieldOfView _fieldOfView;
 
+        public EnemyBehaviour CurrentBehaviour => _currentBehaviour;
         public Gun Weapon => _weapon;
         public EnemyMover EnemyMover => _enemyMover;
         public GameObject WarningIcon => _warningIcon;
@@ -137,6 +138,7 @@ namespace EnemyAI
 
         private void OnPlayerContactLost()
         {
+            _positionToSearch = _player.transform.position;
             EnemyBehaviour behaviour = GetBehaviour<SearchBehaviour>();
             behaviour.BehaviourEnded += OnSearchEnd;
             SetBehaviour(behaviour);
@@ -152,16 +154,8 @@ namespace EnemyAI
         {
             EnemyBehaviour behaviour;
 
-            if (_enemyMover.StartWaypoint != null)
-            {
-                behaviour = GetBehaviour<PatrolBehaviour>();
-                SetBehaviour(behaviour);
-            }
-            else
-            {
-                behaviour = GetBehaviour<IdleBehaviour>();
-                SetBehaviour(behaviour);
-            }
+            behaviour = GetBehaviour<PatrolBehaviour>();
+            SetBehaviour(behaviour);
         }
 
         private void OnNoiseReactionEnd(EnemyBehaviour behaviour)

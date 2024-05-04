@@ -21,7 +21,7 @@ public class EnemyDeathHandler : DeathHandler, IHitReaction
     {
         _enemyFootstepsAudio.Stop();
         _ragdollHandler.ActivateRagdoll();
-        _enemyWeapon.GetComponentInChildren<Rigidbody>().isKinematic = false;
+        _enemyWeapon.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     public void HitReaction(int dagame = 0) => Die();

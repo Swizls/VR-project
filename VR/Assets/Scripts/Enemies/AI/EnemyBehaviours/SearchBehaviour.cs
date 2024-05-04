@@ -5,9 +5,11 @@ namespace EnemyAI
 {
     public class SearchBehaviour : EnemyBehaviour
     {
+        private const string IDLE_ANIMATION_NAME = "Idle";
         private const string WALK_ANIMATION_NAME = "Walking";
         private const float DEFAULT_TIMER_TIME = 10f;
 
+        private bool _destinationIsReached = false;
         private float _timer = 10f;
 
         public SearchBehaviour(EnemyBehaviourHandler enemyReference) : base(enemyReference)
@@ -24,8 +26,13 @@ namespace EnemyAI
 
         public override void Update()
         {
-            if (EnemyBehaviourUtilities.CheckIsDestinationReached(_enemyReference, _enemyReference.PositionToSearch))
+            if (EnemyBehaviourUtilities.CheckIsDestinationReached(_enemyReference, _enemyReference.PositionToSearch) && !_destinationIsReached)
+            {
+                _destinationIsReached = true;
                 return;
+            }
+
+            _animationName = IDLE_ANIMATION_NAME;
 
             _timer -= Time.deltaTime;
             if(_timer < 0) 
@@ -38,7 +45,6 @@ namespace EnemyAI
         {
             _timer = DEFAULT_TIMER_TIME;
             _enemyReference.EnemyMover.StopMoving();
-
         }
     }
 }

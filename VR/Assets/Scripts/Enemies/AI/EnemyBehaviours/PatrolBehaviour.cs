@@ -16,6 +16,7 @@ namespace EnemyAI
     
         public override void Enter()
         {
+            _animationName = ANIMATION_NAME;
             _targetWaypoint = GetNextWaypoint();
             MoveToWaypoint();
 

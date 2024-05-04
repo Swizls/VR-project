@@ -8,9 +8,9 @@ public class EnemyDeathHandlerEditor : Editor
     {
         base.OnInspectorGUI();
 
-        EnemyDeathHandler ragdollHandler = (EnemyDeathHandler)target;
+        EnemyDeathHandler enemyDeathHandler = (EnemyDeathHandler)target;
 
         if(GUILayout.Button("Kill"))
-            ragdollHandler.Die();
+            enemyDeathHandler.Die();
     }
 }

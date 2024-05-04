@@ -22,6 +22,7 @@ namespace EnemyAI
             _target = _enemyReference.PlayerReference.GetComponent<Health>();
             _enemyReference.EnemyMover.Agent.isStopped = true;
             _enemyReference.EnemyMover.StopMoving();
+            _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
         }
 
         public override void Update()
@@ -31,6 +32,8 @@ namespace EnemyAI
                 _timerAttack -= Time.deltaTime;
                 return;
             }
+
+            _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
 
             ImitateAttack();
             ResetTimer();
@@ -45,8 +48,6 @@ namespace EnemyAI
         {
             if (_target == null)
                 return;
-
-            _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
             
             _target.HitReaction(_enemyReference.Weapon.Damage);
 
@@ -55,7 +56,7 @@ namespace EnemyAI
 
         private void ResetTimer()
         {
-            _timerAttack = DEFAULT_TIMER_ATTACK;
+            _timerAttack = Random.Range(0.2f, DEFAULT_TIMER_ATTACK);
         }
     }
 }
