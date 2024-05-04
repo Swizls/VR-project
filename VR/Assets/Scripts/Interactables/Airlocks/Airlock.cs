@@ -1,36 +1,51 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(NavMeshObstacle))]
 public class Airlock : MonoBehaviour
 {
-    private const string OPENING_ANIMATION = "Opened";
-    private const string CLOSING_ANIMATION = "Closed";
-
     [SerializeField] private float _timeToHold;
+    [SerializeField] private bool _isLocked;
 
     private bool _isOpen = false;
 
+    private NavMeshObstacle _navMeshObstacle;
     private Animator _animator;
     private AudioSource _audioSource;
+
+    public event Action LockValueChanged;
+
+    public bool IsLocked => _isLocked;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _navMeshObstacle = GetComponent<NavMeshObstacle>();
+
+        _navMeshObstacle.enabled = _isLocked;
     }
 
     public void Open()
     {
-        if (_isOpen)
+        if (_isOpen || _isLocked)
             return;
 
         _isOpen = true;
         _animator.SetBool("isOpen", _isOpen);
         _audioSource.Play();
         StartCoroutine(HoldOpen());
+    }
+
+    public void ToggleLock()
+    {
+        _isLocked = !_isLocked;
+        _navMeshObstacle.enabled = _isLocked;
+        LockValueChanged?.Invoke();
     }
 
     private IEnumerator HoldOpen()

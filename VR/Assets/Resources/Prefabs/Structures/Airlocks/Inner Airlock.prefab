@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToHold: 10
+  _isLocked: 0
 --- !u!82 &7548891751811408977
 AudioSource:
   m_ObjectHideFlags: 0
