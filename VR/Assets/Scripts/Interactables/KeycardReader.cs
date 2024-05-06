@@ -1,36 +1,24 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class KeycardReader : MonoBehaviour
 {
-    [SerializeField] private List<Door> _doorsList = new List<Door>();
+    [SerializeField] private Airlock _airlock;
+    [SerializeField] private KeycardType _type;
 
-    public UnityEvent KeycardReaded;
+    public event Action KeycardReaded;
+    public event Action<bool> LockStatusChanged;
 
-    public Action<bool> LockStatusChanged;
+    public bool IsAirlockLocked => _airlock.IsLocked;
 
-    public List<Door> DoorsList => _doorsList;
+    #region MONO
 
     private void Start()
     {
-        if (_doorsList.Count == 0)
-            return;
+        if (_airlock == null)
+            throw new NullReferenceException($"Airlock is {_airlock}");
 
-        LockStatusChanged?.Invoke(_doorsList[0].IsLocked);
-
-        foreach(Door door in _doorsList)
-            KeycardReaded.AddListener(door.ToggleLockValue);
-    }
-
-    private void OnDisable()
-    {
-        if(_doorsList.Count == 0)
-            return;
-
-        foreach(Door door in _doorsList)
-            KeycardReaded.RemoveAllListeners();
+        KeycardReaded += _airlock.ToggleLock;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,20 +26,25 @@ public class KeycardReader : MonoBehaviour
         ChangeDoorLock(other);
     }
 
+    private void OnDrawGizmos()
+    {
+        if (_airlock == null)
+            return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, _airlock.transform.position);
+    }
+    #endregion
+
     private void ChangeDoorLock(Collider other)
     {
         if (!other.transform.parent.TryGetComponent(out Keycard keycard))
             return;
 
+        if (_type != keycard.Keycardtype)
+            return;
+
         KeycardReaded?.Invoke();
-        LockStatusChanged?.Invoke(_doorsList[0].IsLocked);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-
-        foreach (Door door in _doorsList)
-            Gizmos.DrawLine(transform.position, door.transform.position);
+        LockStatusChanged?.Invoke(_airlock.IsLocked);
     }
 }

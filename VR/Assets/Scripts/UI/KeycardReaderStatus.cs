@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(KeycardReader))]
@@ -12,17 +9,17 @@ public class KeycardReaderStatus : MonoBehaviour
     [SerializeField] private GameObject _statusDisplay;
 
     private KeycardReader _keycardReader;
-
     private Renderer _cachedRenderer;
 
-    private bool _doorsStatus;
-
+    #region MONO
     private void Start()
     {
         _keycardReader = GetComponent<KeycardReader>();
         _cachedRenderer = _statusDisplay.GetComponent<Renderer>();
 
         _keycardReader.LockStatusChanged += SetStatus;
+
+        SetStatus(_keycardReader.IsAirlockLocked);
     }
 
     private void OnEnable()
@@ -35,6 +32,8 @@ public class KeycardReaderStatus : MonoBehaviour
     {
         _keycardReader.LockStatusChanged -= SetStatus;
     }
+
+    #endregion
 
     private void SetStatus(bool status)
     {
