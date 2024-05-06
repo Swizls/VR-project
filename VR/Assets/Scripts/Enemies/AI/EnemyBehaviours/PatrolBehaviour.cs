@@ -20,7 +20,6 @@ namespace Game.Enemies.AI
         public override void Enter()
         {
             _animationName = ANIMATION_NAME;
-            _enemyReference.EnemyMover.StartMoving();
         }
 
         public override void Update()
@@ -34,7 +33,7 @@ namespace Game.Enemies.AI
     
         public override void Exit()
         {
-            _enemyReference.EnemyMover.StopMoving();
+            
         }
 
         private Waypoint GetNextWaypoint()

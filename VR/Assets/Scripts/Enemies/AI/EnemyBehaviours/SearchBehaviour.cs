@@ -21,7 +21,6 @@ namespace Game.Enemies.AI
         public override void Enter()
         {
             _enemyReference.EnemyMover.Agent.SetDestination(_enemyReference.PositionToSearch);
-            _enemyReference.EnemyMover.StartMoving();
         }
 
         public override void Update()
@@ -44,7 +43,6 @@ namespace Game.Enemies.AI
         public override void Exit()
         {
             _timer = DEFAULT_TIMER_TIME;
-            _enemyReference.EnemyMover.StopMoving();
             _enemyReference.SoundReaction.PlaySoundReaction(_enemyReference.SoundReaction.PlayerLost);
         }
     }

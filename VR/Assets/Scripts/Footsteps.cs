@@ -10,8 +10,6 @@ public class Footsteps : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         _targetMover = GetComponent<IMovable>();
 
         _targetMover.MovingStateChanged += PlayFootstepsSounds;
@@ -26,6 +24,9 @@ public class Footsteps : MonoBehaviour
     {
         if (movingState)
         {
+            if (_audioSource.isPlaying)
+                return;
+
             _audioSource.clip = _footstepSounds[Random.Range(0, _footstepSounds.Count - 1)];
             _audioSource.Play();
             return;

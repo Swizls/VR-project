@@ -27,7 +27,6 @@ namespace Game.Enemies.AI
             else
             {
                 _enemyReference.EnemyMover.Agent.SetDestination(_startPosition);
-                _enemyReference.EnemyMover.StartMoving();
                 _animationName = WALK_ANIMATION_NAME;
             }
         }
@@ -46,7 +45,6 @@ namespace Game.Enemies.AI
         public override void Exit()
         {
             _canBeUpdated = true;
-            _enemyReference.EnemyMover.StopMoving();
         }
     }
 }

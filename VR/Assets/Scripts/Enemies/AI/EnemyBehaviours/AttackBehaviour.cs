@@ -21,7 +21,6 @@ namespace Game.Enemies.AI
         {
             _target = _enemyReference.PlayerReference.GetComponent<Health>();
             _enemyReference.EnemyMover.Agent.isStopped = true;
-            _enemyReference.EnemyMover.StopMoving();
             _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
             _enemyReference.SoundReaction.PlaySoundReaction(_enemyReference.SoundReaction.PlayerSpotted);
         }
