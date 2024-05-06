@@ -1,4 +1,4 @@
-using EnemyAI;
+using Game.Enemies.AI;
 using UnityEngine;
 
 public class NoiseMakerThrowable : NoiseMaker

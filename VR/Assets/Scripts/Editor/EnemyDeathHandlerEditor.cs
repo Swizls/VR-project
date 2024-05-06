@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using Game.Enemies;
 
 [CustomEditor(typeof(EnemyDeathHandler))]
 public class EnemyDeathHandlerEditor : Editor

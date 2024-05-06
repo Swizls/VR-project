@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnemyAI 
+namespace Game.Enemies.AI
 {
     public class AttackBehaviour : EnemyBehaviour
     {
@@ -23,6 +23,7 @@ namespace EnemyAI
             _enemyReference.EnemyMover.Agent.isStopped = true;
             _enemyReference.EnemyMover.StopMoving();
             _enemyReference.transform.LookAt(_enemyReference.PlayerReference.transform);
+            _enemyReference.SoundReaction.PlaySoundReaction(_enemyReference.SoundReaction.PlayerSpotted);
         }
 
         public override void Update()

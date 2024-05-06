@@ -1,7 +1,7 @@
 using UnityEngine;
-using EnemyAI.Utilites;
+using Game.Enemies.AI.Utilites;
 
-namespace EnemyAI
+namespace Game.Enemies.AI
 {
     public class IdleBehaviour : EnemyBehaviour
     {

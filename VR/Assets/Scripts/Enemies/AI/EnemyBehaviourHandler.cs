@@ -1,11 +1,9 @@
+using Game.Enemies;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
-namespace EnemyAI
+namespace Game.Enemies.AI
 {
     [RequireComponent(typeof(FieldOfView))]
     public class EnemyBehaviourHandler : MonoBehaviour
@@ -36,6 +34,7 @@ namespace EnemyAI
         private EnemyBehaviour _currentBehaviour;
         private EnemyMover _enemyMover;
         private FieldOfView _fieldOfView;
+        private EnemySoundReaction _soundReaction;
 
         public EnemyBehaviour CurrentBehaviour => _currentBehaviour;
         public Gun Weapon => _weapon;
@@ -44,11 +43,13 @@ namespace EnemyAI
         public GameObject PlayerReference => _player;
         public Vector3 PositionToSearch => _positionToSearch;
         public WaypointCointainer WaypointCointainer => _waypointCointainer;
+        public EnemySoundReaction SoundReaction => _soundReaction;
 
         private void Start()
         {
             _enemyMover = GetComponent<EnemyMover>();
             _fieldOfView = GetComponent<FieldOfView>();
+            _soundReaction = GetComponent<EnemySoundReaction>();
 
             _waypointCointainer = FindObjectOfType<WaypointCointainer>();
 

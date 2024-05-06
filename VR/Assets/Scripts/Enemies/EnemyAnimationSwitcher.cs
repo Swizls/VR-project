@@ -1,47 +1,48 @@
-using EnemyAI;
-using System.Collections;
-using System.Collections.Generic;
+using Game.Enemies.AI;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyBehaviourHandler))]
-public class EnemyAnimationSwitcher : MonoBehaviour
+namespace Game.Enemies 
 {
-    private EnemyBehaviourHandler _enemyBehiviourHandler;
-    private EnemyBehaviour _currentBehaviour;
-
-    private Animator _animator;
-
-    private int _upperBodyLayerIndex;
-
-    private void Start()
+    [RequireComponent(typeof(EnemyBehaviourHandler))]
+    public class EnemyAnimationSwitcher : MonoBehaviour
     {
-        _enemyBehiviourHandler = GetComponent<EnemyBehaviourHandler>();
+        private EnemyBehaviourHandler _enemyBehiviourHandler;
+        private EnemyBehaviour _currentBehaviour;
 
-        _animator = GetComponentInChildren<Animator>();
+        private Animator _animator;
 
-        _enemyBehiviourHandler.BehaviourChanged += SetAnimation;
-        _upperBodyLayerIndex = _animator.GetLayerIndex("UpperBody");
-    }
+        private int _upperBodyLayerIndex;
 
-    private void Update()
-    {
-        float speed = _enemyBehiviourHandler.EnemyMover.Agent.velocity.magnitude;
-        _animator.SetFloat("MovementSpeed", speed);
-    }
+        private void Start()
+        {
+            _enemyBehiviourHandler = GetComponent<EnemyBehaviourHandler>();
 
-    private void SetAnimation(EnemyBehaviour behaviour)
-    {
-        if(_currentBehaviour != null)
-            _currentBehaviour.BehaviourEnded -= SetAnimation;
+            _animator = GetComponentInChildren<Animator>();
 
-        _currentBehaviour = behaviour;
+            _enemyBehiviourHandler.BehaviourChanged += SetAnimation;
+            _upperBodyLayerIndex = _animator.GetLayerIndex("UpperBody");
+        }
 
-        if(_currentBehaviour.GetType() == typeof(PatrolBehaviour))
-            _animator.SetLayerWeight(_upperBodyLayerIndex, 0f);
-        else
-            _animator.SetLayerWeight(_upperBodyLayerIndex, 1f);
+        private void Update()
+        {
+            float speed = _enemyBehiviourHandler.EnemyMover.Agent.velocity.magnitude;
+            _animator.SetFloat("MovementSpeed", speed);
+        }
 
-        _currentBehaviour.BehaviourEnded += SetAnimation;
-        _animator.Play(behaviour.AnimationName);
+        private void SetAnimation(EnemyBehaviour behaviour)
+        {
+            if (_currentBehaviour != null)
+                _currentBehaviour.BehaviourEnded -= SetAnimation;
+
+            _currentBehaviour = behaviour;
+
+            if (_currentBehaviour.GetType() == typeof(PatrolBehaviour))
+                _animator.SetLayerWeight(_upperBodyLayerIndex, 0f);
+            else
+                _animator.SetLayerWeight(_upperBodyLayerIndex, 1f);
+
+            _currentBehaviour.BehaviourEnded += SetAnimation;
+            _animator.Play(behaviour.AnimationName);
+        }
     }
 }

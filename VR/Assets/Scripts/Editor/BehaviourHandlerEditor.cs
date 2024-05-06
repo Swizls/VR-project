@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using EnemyAI;
+using Game.Enemies.AI;
 
 [CustomEditor(typeof(EnemyBehaviourHandler))]
 public class BehaviourEditor : Editor

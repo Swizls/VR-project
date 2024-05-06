@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnemyAI.Utilites
+namespace Game.Enemies.AI.Utilites
 {
     public static class EnemyBehaviourUtilities
     {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using Game.Enemies;
 
 [CustomEditor(typeof(RagdollHandler))]
 public class RagdollHandlerEditor : Editor

@@ -1,7 +1,4 @@
-using TMPro;
-using UnityEngine;
-
-namespace EnemyAI 
+namespace Game.Enemies.AI
 {
     public class ChasePlayerBehaviour : EnemyBehaviour
     {

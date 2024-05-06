@@ -1,7 +1,7 @@
-using EnemyAI.Utilites;
+using Game.Enemies.AI.Utilites;
 using UnityEngine;
 
-namespace EnemyAI
+namespace Game.Enemies.AI
 {
     public class SearchBehaviour : EnemyBehaviour
     {

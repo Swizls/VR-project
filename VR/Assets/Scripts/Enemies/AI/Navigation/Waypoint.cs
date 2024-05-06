@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnemyAI 
+namespace Game.Enemies.AI
 { 
     public class Waypoint : MonoBehaviour
     {

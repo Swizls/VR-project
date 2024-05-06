@@ -1,7 +1,6 @@
-using EnemyAI;
 using System;
 
-namespace EnemyAI
+namespace Game.Enemies.AI
 {
     public abstract class EnemyBehaviour
     {
