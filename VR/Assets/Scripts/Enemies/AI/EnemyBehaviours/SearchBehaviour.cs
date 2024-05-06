@@ -45,6 +45,7 @@ namespace Game.Enemies.AI
         {
             _timer = DEFAULT_TIMER_TIME;
             _enemyReference.EnemyMover.StopMoving();
+            _enemyReference.SoundReaction.PlaySoundReaction(_enemyReference.SoundReaction.PlayerLost);
         }
     }
 }
