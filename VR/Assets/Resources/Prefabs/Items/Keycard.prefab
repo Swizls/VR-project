@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052595, y: -0, z: -0, w: 0.9914449}
   m_LocalPosition: {x: 16.690956, y: 1.238, z: 10.122}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _keycardType: 0
-  _targetMaterialIndex: 0
+  _targetMaterialIndex: 1
   _purple: {r: 1, g: 0, b: 0.99149656, a: 0}
   _red: {r: 1, g: 0.120469406, b: 0, a: 0}
   _blue: {r: 0.010130405, g: 0, b: 1, a: 0}

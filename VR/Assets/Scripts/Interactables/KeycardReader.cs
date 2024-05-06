@@ -38,7 +38,7 @@ public class KeycardReader : MonoBehaviour
 
     private void ChangeDoorLock(Collider other)
     {
-        if (!other.transform.parent.TryGetComponent(out Keycard keycard))
+        if (!other.transform.TryGetComponent(out Keycard keycard))
             return;
 
         if (_type != keycard.Keycardtype)
