@@ -6,6 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementTracker : MonoBehaviour, IMovable
 {
+    private const float SPEED_THRESHOLD = 0.5f;
+
     [SerializeField] private CharacterController _characterController;
 
     public event Action<bool> MovingStateChanged;
@@ -33,6 +35,6 @@ public class PlayerMovementTracker : MonoBehaviour, IMovable
     }
     private bool CheckIsPlayerMoving()
     {
-        return _characterController.velocity != Vector3.zero;
+        return _characterController.velocity.magnitude == SPEED_THRESHOLD;
     }
 }
