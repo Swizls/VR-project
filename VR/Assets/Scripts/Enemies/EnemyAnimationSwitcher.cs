@@ -1,15 +1,16 @@
 using Game.Enemies.AI;
 using UnityEngine;
+using System;
 
 namespace Game.Enemies 
 {
     [RequireComponent(typeof(EnemyBehaviourHandler))]
     public class EnemyAnimationSwitcher : MonoBehaviour
     {
+        [SerializeField] private Animator _animator;
+
         private EnemyBehaviourHandler _enemyBehiviourHandler;
         private EnemyBehaviour _currentBehaviour;
-
-        private Animator _animator;
 
         private int _upperBodyLayerIndex;
 
@@ -17,7 +18,8 @@ namespace Game.Enemies
         {
             _enemyBehiviourHandler = GetComponent<EnemyBehaviourHandler>();
 
-            _animator = GetComponentInChildren<Animator>();
+            if (_animator == null)
+                throw new NullReferenceException();
 
             _enemyBehiviourHandler.BehaviourChanged += SetAnimation;
             _upperBodyLayerIndex = _animator.GetLayerIndex("UpperBody");
