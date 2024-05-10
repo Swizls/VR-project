@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9027227415347286429}
   - component: {fileID: 8090609754244010345}
   - component: {fileID: 8915478232578968577}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rising Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 2606158649133127665}
   - component: {fileID: 3552195948968643062}
   - component: {fileID: 6735672421161727456}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156124752758836672}
   - component: {fileID: 2539297229121575614}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SnapPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862946774717121062}
   - component: {fileID: 2528588302973651339}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SnapPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,8 +2,9 @@ using Game.Enemies.AI;
 using UnityEngine;
 using System;
 using UnityEngine.Animations.Rigging;
+using System.Collections;
 
-namespace Game.Enemies 
+namespace Game.Enemies
 {
     [RequireComponent(typeof(EnemyBehaviourHandler))]
     public class EnemyAnimationController : MonoBehaviour
@@ -14,6 +15,8 @@ namespace Game.Enemies
 
         private EnemyBehaviourHandler _enemyBehiviourHandler;
         private EnemyBehaviour _currentBehaviour;
+
+        private float _switchingSpeed = 5f;
 
         private int _upperBodyLayerIndex;
 
@@ -49,19 +52,28 @@ namespace Game.Enemies
 
             if (_currentBehaviour.GetType() == typeof(AttackBehaviour))
             {
-                _rig.weight = 1f;
+                StopAllCoroutines();
+                StartCoroutine(StartAnimationEaseSwitching(1f));
                 _aimPoint.enabled = true;
-                _animator.SetLayerWeight(_upperBodyLayerIndex, 1f);
             }
             else
             {
-                _rig.weight = 0;
+                StopAllCoroutines();
+                StartCoroutine(StartAnimationEaseSwitching(0f));
                 _aimPoint.enabled = false;
-                _animator.SetLayerWeight(_upperBodyLayerIndex, 0f);
             }
 
             _currentBehaviour.BehaviourEnded += SetAnimation;
             _animator.Play(behaviour.AnimationName);
+        }
+        private IEnumerator StartAnimationEaseSwitching(float targetValue)
+        {
+            while (_animator.GetLayerWeight(_upperBodyLayerIndex) != targetValue)
+            {
+                _animator.SetLayerWeight(_upperBodyLayerIndex, Mathf.Lerp(_animator.GetLayerWeight(_upperBodyLayerIndex), targetValue, Time.deltaTime * _switchingSpeed));
+                _rig.weight = Mathf.Lerp(_rig.weight, targetValue, Time.deltaTime * _switchingSpeed);
+                yield return null;
+            }
         }
     }
 }
