@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
     [SerializeField] private Scene _scene;
+    [SerializeField] private int _mainSceneIndex;
 
     public void Restart()
     {
         SceneManager.LoadScene(0);
     }
-    private void OnTriggerEnter(Collider collider)
+
+    public void StartGame()
     {
-        Restart();
+        SceneManager.LoadScene(_mainSceneIndex);
+    }
+
+    public void ExitFromGame()
+    {
+        Application.Quit();
     }
 }
