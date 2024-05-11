@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Pistol Magazine
   m_EditorClassIdentifier: 
   _itemPrefab: {fileID: 1256717372509479083, guid: f5442598bbe94374598933b363f1f992, type: 3}
-  _recipeName: Pristol Magazine
+  _recipeName: Pistol Magazine
   _requiredResources:
     key:
     - Metal
-    amount: 05000000
+    - Gunpowder
+    amount: 0500000002000000
