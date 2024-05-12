@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOverHandler : MonoBehaviour
@@ -16,12 +13,17 @@ public class GameOverHandler : MonoBehaviour
         if(_playerReference == null)
             _playerReference = FindAnyObjectByType<CharacterController>().gameObject;
 
-        _playerReference.GetComponent<Health>().Died += Restart;
+        _playerReference.GetComponent<Health>().Died += OnPlayerDeath;
     }
 
-    private void Restart()
+    private void OnDisable()
     {
-        _playerReference.GetComponent<Health>().Died -= Restart;
+        _playerReference.GetComponent<Health>().Died -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        _playerReference.GetComponent<Health>().Died -= OnPlayerDeath;
         _sceneHandler.Restart();
     }
 }

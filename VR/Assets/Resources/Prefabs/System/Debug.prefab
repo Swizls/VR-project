@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scene:
     m_Handle: 0
+  _mainSceneIndex: 1
+  _mainMenuIndex: 0
 --- !u!114 &2055803344479944627
 MonoBehaviour:
   m_ObjectHideFlags: 0
