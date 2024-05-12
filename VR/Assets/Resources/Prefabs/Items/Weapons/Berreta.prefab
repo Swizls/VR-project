@@ -504,7 +504,7 @@ MonoBehaviour:
   _magazineReloadTrigger: {fileID: 7714189619736868817}
   _magazineSpot: {fileID: 0}
   _magazinePrefab: {fileID: 1256717372509479083, guid: f5442598bbe94374598933b363f1f992, type: 3}
-  _hasMagazineOnStart: 1
+  _hasMagazineOnStart: 0
 --- !u!1 &2863673134587897825
 GameObject:
   m_ObjectHideFlags: 0
