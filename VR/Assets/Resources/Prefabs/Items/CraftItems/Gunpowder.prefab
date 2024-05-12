@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6104115860460371644}
   - component: {fileID: 67934453152742136}
   - component: {fileID: 1267278514105859848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: korkki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 417349753050147919}
   - component: {fileID: 2346645024215251553}
   - component: {fileID: 4222150945234489378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5737006913930787908}
   - component: {fileID: 383020273063603683}
   - component: {fileID: 1516724480597462488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gunpowder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1

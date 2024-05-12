@@ -535,7 +535,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6147325375840348694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00874ba9d06cda9409b80f14992aaf21, type: 3}
+  m_Script: {fileID: 11500000, guid: 36ab7e37c6377bd41b36f46c19a20dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7166585315428946108

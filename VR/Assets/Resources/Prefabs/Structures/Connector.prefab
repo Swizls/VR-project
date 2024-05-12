@@ -438,7 +438,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 732297205719026219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53de6d55778e3545af039a05fdf6b16, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7487369213254179469
@@ -450,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156124752758836672}
-  - component: {fileID: 2539297229121575614}
+  - component: {fileID: 477949527744656874}
   m_Layer: 0
   m_Name: SnapPoint (2)
   m_TagString: Untagged
@@ -473,7 +473,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5251781463538007220}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2539297229121575614
+--- !u!114 &477949527744656874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7487369213254179469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c0d2bcb001b6042a2f11f345e36b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: d48bcca030515074f883f67c3fb40519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8527255326770983575
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862946774717121062}
-  - component: {fileID: 2528588302973651339}
+  - component: {fileID: 523709592477541559}
   m_Layer: 0
   m_Name: SnapPoint
   m_TagString: Untagged
@@ -517,7 +517,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5251781463538007220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2528588302973651339
+--- !u!114 &523709592477541559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,6 +526,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8527255326770983575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c0d2bcb001b6042a2f11f345e36b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: d48bcca030515074f883f67c3fb40519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -320,17 +320,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3318
   m_IsSelectable: 1
-  m_SelectedFaces: 01000000
-  m_SelectedEdges:
-  - a: 4
-    b: 5
-  - a: 5
-    b: 6
-  - a: 7
-    b: 4
-  - a: 6
-    b: 7
-  m_SelectedVertices: 08000000150000001400000017000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &402567259797169296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +427,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 732297205719026219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53de6d55778e3545af039a05fdf6b16, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7487369213254179469
@@ -479,7 +471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7487369213254179469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c0d2bcb001b6042a2f11f345e36b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8248937805740950164
@@ -629,6 +621,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8527255326770983575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c0d2bcb001b6042a2f11f345e36b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

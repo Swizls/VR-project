@@ -4,13 +4,13 @@ using UnityEngine;
 [CustomEditor(typeof(RigTester))]
 public class RigTesterEditor : Editor 
 {
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+    //public override void OnInspectorGUI()
+    //{
+    //    base.OnInspectorGUI();
 
-        RigTester rig = (RigTester)target;
+    //    RigTester rig = (RigTester)target;
 
-        if (GUILayout.Button("Toggle Rig"))
-            rig.ToggleEditorRig();
-    }
+    //    if (GUILayout.Button("Toggle Rig"))
+    //        rig.ToggleEditorRig();
+    //}
 }
