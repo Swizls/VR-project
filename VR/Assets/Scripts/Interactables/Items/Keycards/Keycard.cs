@@ -24,6 +24,13 @@ public class Keycard : MonoBehaviour
         SetColor();
     }
 
+    public void SetType(KeycardType type)
+    {
+        _keycardType = type;
+
+        SetColor();
+    }
+
     private void SetColor()
     {
         switch(_keycardType) 

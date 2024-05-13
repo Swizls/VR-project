@@ -9,6 +9,7 @@ public class KeycardReader : MonoBehaviour
     public event Action KeycardReaded;
     public event Action<bool> LockStatusChanged;
 
+    public KeycardType Type => _type;
     public bool IsAirlockLocked => _airlock.IsLocked;
 
     #region MONO
