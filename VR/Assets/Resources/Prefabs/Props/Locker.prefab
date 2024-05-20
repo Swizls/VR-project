@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 854441297473712224}
-  _invisibleHandle: {fileID: 0}
+  _invisibleHandle: {fileID: 4419957195447024476}
 --- !u!1001 &5147464854206637284
 PrefabInstance:
   m_ObjectHideFlags: 0

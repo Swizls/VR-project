@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9027227415347286429}
   - component: {fileID: 8090609754244010345}
   - component: {fileID: 8915478232578968577}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Rising Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,7 @@ namespace SOData
         [SerializeField] private ResourceDictionary<string, int> _requiredResources = new();
 
         public GameObject ItemPrefab => _itemPrefab;
+        public string RecipeName => _recipeName;
         public ResourceDictionary<string, int> RequiredResources => _requiredResources;
     }
 }

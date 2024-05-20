@@ -1,4 +1,5 @@
 using SOData;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class CraftRecipesContainer : MonoBehaviour
 {
     [SerializeField] private List<CraftRecipe> _availableCraftRecipies;
     [SerializeField] private CraftRecipe _selectedCraftRecipe;
+
+    public Action<CraftRecipe> CraftRecipeChanged;
 
     public List<CraftRecipe> AvailableCraftRecipe => _availableCraftRecipies;
     public CraftRecipe SelectedCraftRecipe => _selectedCraftRecipe;
@@ -22,6 +25,7 @@ public class CraftRecipesContainer : MonoBehaviour
     public void SelectCraftRecipe(CraftRecipe recipe)
     {
         _selectedCraftRecipe = recipe;
+        CraftRecipeChanged?.Invoke(recipe);
     }
 
 }
