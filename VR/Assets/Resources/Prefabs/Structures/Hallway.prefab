@@ -364,9 +364,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0db5c7af4a599d54ca3a2a385b90e67e, type: 2}
-  - {fileID: 2100000, guid: 2a2c01d493057334bad5982f6d354e85, type: 2}
-  - {fileID: 2100000, guid: 5d46bb438eef41d449bb7588f4a77e06, type: 2}
+  - {fileID: 2100000, guid: bacc7ee8fd0869d45be470f049e53d8b, type: 2}
+  - {fileID: 2100000, guid: ab4269e12763c2845868256b389e5b9b, type: 2}
+  - {fileID: 2100000, guid: 66bb025986bd66c479f0fe7e007798b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -439,7 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156124752758836672}
-  - component: {fileID: 2539297229121575614}
+  - component: {fileID: 3308486349651958842}
   m_Layer: 0
   m_Name: SnapPoint (2)
   m_TagString: Untagged
@@ -462,7 +462,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5251781463538007220}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2539297229121575614
+--- !u!114 &3308486349651958842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7487369213254179469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
+  m_Script: {fileID: 11500000, guid: d48bcca030515074f883f67c3fb40519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8248937805740950164
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862946774717121062}
-  - component: {fileID: 2528588302973651339}
+  - component: {fileID: 7016341061116622051}
   m_Layer: 0
   m_Name: SnapPoint
   m_TagString: Untagged
@@ -612,7 +612,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5251781463538007220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2528588302973651339
+--- !u!114 &7016341061116622051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -621,6 +621,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8527255326770983575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e2dc5619c211c4f8fce35e13d34c37, type: 3}
+  m_Script: {fileID: 11500000, guid: d48bcca030515074f883f67c3fb40519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
